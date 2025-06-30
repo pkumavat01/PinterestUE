@@ -209,52 +209,16 @@ header nav .nav-sections ul > li > ul > li {
     display: flex;
     visibility: visible;
     white-space: nowrap;
+    margin: 0.5rem
   }
 
- 
-  header nav .nav-sections ul {
+  header nav .nav-sections .nav-search {
     display: flex;
-    gap: 24px;
-    margin: 0;
-  }
+    flex-direction: row;
+    gap: 0 24px;
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
   }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
-}
+ }
 
 /* tools */
 header nav .nav-tools {
@@ -267,6 +231,39 @@ header nav .nav-tools .button-container:first-of-type strong a {
 
 header nav .nav-tools .button-container:last-of-type strong a {
   background-color: gray;
-} 
+}
+
+/* search */
+header nav .nav-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 1rem 0;
+}
+
+header nav .nav-search input[type="text"] {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+  color: #222;
+  box-sizing: border-box;
+}
+
+header nav .nav-search .nav-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  opacity: 0.7;
+}
 
 
