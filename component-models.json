@@ -142,43 +142,6 @@
     ]
   },
   {
-    "id": "cards",
-    "fields": [
-      {
-        "component": "collection",
-        "name": "items",
-        "label": "Card Items",
-        "valueType": "array",
-        "model": "card"
-      },
-      {
-        "component": "select",
-        "name": "classes",
-        "label": "Card Variation",
-        "valueType": "string",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "Big Card",
-            "value": "big"
-          },
-          {
-            "name": "Small Card",
-            "value": "small"
-          },
-          {
-            "name": "Long Card",
-            "value": "long"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "card",
     "fields": [
       {
