@@ -55,6 +55,7 @@
           "name": "classes",
           "value":"big-card",
           "label": "Card Variation",
+          "valueType": "string",
           "options": [
             { 
               "name": "Default",
@@ -68,10 +69,7 @@
               "name": "Small",
               "value": "small-card" 
             }
-          ],
-          "valueType": "string",
-          "multi": false,
-          "class": true
+          ]
         }
       ]
     }
