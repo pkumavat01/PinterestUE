@@ -33,6 +33,28 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "valueType": "string",
+          "label": "Classes for Variation",
+          "value": "big-card",
+          "options": [
+            {
+              "label": "Big Card",
+              "value": "big-card"
+            },
+            {
+              "label": "Small Card",
+              "value": "small-card"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {
@@ -48,32 +70,8 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
-        },
-        {
-          "component": "select",
-          "name": "classes",
-          "value": "big-card",
-          "label": "Classes for Variation",
-          "valueType": "string",
-          "options": [
-            {
-              "name": "Default",
-              "value": ""
-            },
-            {
-              "name": "Big Card",
-              "value": "big-card"
-            },
-            {
-              "name": "Small Card",
-              "value": "small-card"
-            },
-            {
-              "name": "Long Card",
-              "value": "long-card"
-            }
-          ]
         }
+
       ]
     }
   ],
