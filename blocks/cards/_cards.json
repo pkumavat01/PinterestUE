@@ -35,23 +35,6 @@
     {
       "id": "cards",
       "fields": [
-        {
-          "component": "select",
-          "name": "classes",
-          "valueType": "string",
-          "label": "Classes for Variation",
-          "value": "big-card",
-          "options": [
-            {
-              "label": "Big Card",
-              "value": "big-card"
-            },
-            {
-              "label": "Small Card",
-              "value": "small-card"
-            }
-          ]
-        }
       ]
     },
     {
@@ -70,8 +53,24 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "classes",
+          "valueType": "string",
+          "label": "Classes for Variation",
+          "value": "big-card",
+          "options": [
+            {
+              "label": "Big Card",
+              "value": "big-card"
+            },
+            {
+              "label": "Small Card",
+              "value": "small-card"
+            }
+          ]
         }
-
       ]
     }
   ],
