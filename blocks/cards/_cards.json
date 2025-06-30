@@ -51,7 +51,7 @@
         },
         {
           "component": "select",
-          "name": "classes",
+          "name": "class",
           "label": "Card Variation",
           "options": [
             { "name": "Default", "value": "" },
@@ -59,7 +59,8 @@
             { "name": "Small", "value": "small-card" }
           ],
           "valueType": "string",
-          "multi": false
+          "multi": false,
+          "class": true
         }
       ]
     }
