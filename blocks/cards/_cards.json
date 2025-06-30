@@ -51,12 +51,12 @@
         },
         {
           "component": "select",
-          "name": "variation",
+          "name": "classes",
           "label": "Card Variation",
           "options": [
-            { "label": "Default", "value": "" },
-            { "label": "Big", "value": "big-card" },
-            { "label": "Small", "value": "small-card" }
+            { "name": "Default", "value": "" },
+            { "name": "Big", "value": "big-card" },
+            { "name": "Small", "value": "small-card" }
           ],
           "valueType": "string",
           "multi": false
