@@ -1,6 +1,5 @@
 {
-  "definitions": 
-  [
+  "definitions": [
     {
       "title": "Cards",
       "id": "cards",
@@ -53,20 +52,25 @@
         {
           "component": "select",
           "name": "classes",
-          "value":"big-card",
-          "label": "Card Variation",
+          "label": "Classes for Variation",
+          "value": "big-card",
+          "valueType": "string",
           "options": [
-            { 
+            {
               "name": "Default",
-              "value": "" 
+              "value": ""
             },
-            { 
-              "name": "Big", 
-              "value": "big-card" 
+            {
+              "name": "Big Card",
+              "value": "big-card"
             },
-            { 
-              "name": "Small",
-              "value": "small-card" 
+            {
+              "name": "Small Card",
+              "value": "small-card"
+            },
+            {
+              "name": "Long Card",
+              "value": "long-card"
             }
           ]
         }

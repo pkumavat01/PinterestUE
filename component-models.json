@@ -161,20 +161,25 @@
       {
         "component": "select",
         "name": "classes",
+        "label": "Classes for Variation",
         "value": "big-card",
-        "label": "Card Variation",
+        "valueType": "string",
         "options": [
           {
             "name": "Default",
             "value": ""
           },
           {
-            "name": "Big",
+            "name": "Big Card",
             "value": "big-card"
           },
           {
-            "name": "Small",
+            "name": "Small Card",
             "value": "small-card"
+          },
+          {
+            "name": "Long Card",
+            "value": "long-card"
           }
         ]
       }
