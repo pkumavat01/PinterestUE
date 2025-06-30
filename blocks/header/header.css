@@ -147,6 +147,7 @@ header .nav-brand {
 header nav .nav-brand img {
   width: 128px;
   height: auto;
+  cursor: pointer;
 }
 
 /* sections */
@@ -155,6 +156,28 @@ header nav .nav-sections {
   flex: 1 1 auto;
   display: none;
   visibility: hidden;
+}
+header .nav-brand > div,
+header .nav-tools > div {
+  display: flex;
+  flex-direction: row;
+  gap:0 12px;
+}
+
+header nav .nav-brand .default-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+header nav .nav-brand .default-content-wrapper p:last-of-type a {
+  color: var(--background-color);
+  background-color: var(--text-color);
+  padding: 0.8rem 1rem;
+  border-radius: 24px;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
@@ -183,41 +206,12 @@ header nav .nav-sections ul > li > ul > li {
 
 @media (width >= 900px) {
   header nav .nav-sections {
-    display: block;
+    display: flex;
     visibility: visible;
     white-space: nowrap;
   }
 
-  header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
-  }
-
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
-
+ 
   header nav .nav-sections ul {
     display: flex;
     gap: 24px;
@@ -266,3 +260,13 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+header nav .nav-tools .button-container:first-of-type strong a {
+  background-color: red;
+} 
+
+header nav .nav-tools .button-container:last-of-type strong a {
+  background-color: gray;
+} 
+
+

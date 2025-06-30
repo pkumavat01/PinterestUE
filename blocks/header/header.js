@@ -134,6 +134,15 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // Add search input with icon at the start of nav-sections
+    const searchContainer = document.createElement('div');
+    searchContainer.className = 'nav-search';
+    searchContainer.innerHTML = `
+      <img src="/icons/search.svg" alt="Search" class="nav-search-icon" />
+      <input type="text" placeholder="Search..." aria-label="Search" />
+    `;
+    navSections.prepend(searchContainer);
+
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
