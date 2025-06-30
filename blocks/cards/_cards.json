@@ -35,6 +35,14 @@
     {
       "id": "cards",
       "fields": [
+        
+        {
+          "component": "collection",
+          "name": "items",
+          "label": "Card Items",
+          "valueType": "array",
+          "model": "card"
+        },
         {
           "component": "select",
           "name": "classes",
@@ -59,13 +67,6 @@
               "value": "long"
             }
           ]
-        },
-        {
-          "component": "collection",
-          "name": "items",
-          "label": "Card Items",
-          "valueType": "array",
-          "model": "card"
         }
       ]
     },
