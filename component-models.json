@@ -142,32 +142,20 @@
     ]
   },
   {
-    "id": "cards",
-    "fields": [
-      {
-        "component": "reference",
-        "name": "items",
-        "label": "Cards",
-        "valueType": "card",
-        "multi": true
-      }
-    ]
-  },
-  {
     "id": "card",
     "fields": [
       {
         "component": "reference",
+        "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
-        "valueType": "string"
+        "multi": false
       },
       {
         "component": "richtext",
         "name": "text",
-        "label": "Text",
         "value": "",
+        "label": "Text",
         "valueType": "string"
       },
       {
