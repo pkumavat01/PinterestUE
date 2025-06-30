@@ -142,6 +142,36 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Card Layout",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Big Cards",
+            "value": "big"
+          },
+          {
+            "name": "Small Cards",
+            "value": "small"
+          },
+          {
+            "name": "Long Cards",
+            "value": "long block"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
