@@ -42,11 +42,11 @@
       "id": "cards",
       "fields": [
         {
-          "component": "collection",
+          "component": "reference",
           "name": "items",
-          "label": "Card Items",
-          "valueType": "array",
-          "model": "card"
+          "label": "Cards",
+          "valueType": "card",
+          "multi": true
         },
         {
           "component": "select",
