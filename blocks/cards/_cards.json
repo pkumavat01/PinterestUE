@@ -62,11 +62,11 @@
           "value": "",
           "options": [
             {
-              "label": "Big Card",
+              "name": "Big Card",
               "value": "big-card"
             },
             {
-              "label": "Small Card",
+              "name": "Small Card",
               "value": "small-card"
             }
           ]
