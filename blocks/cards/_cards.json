@@ -59,7 +59,7 @@
           "name": "classes",
           "valueType": "string",
           "label": "Classes for Variation",
-          "value": "",
+          "value": "big-card",
           "options": [
             {
               "name": "Big Card",
