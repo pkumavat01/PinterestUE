@@ -10,12 +10,6 @@
             "template": {
               "name": "Cards",
               "model": "cards"
-            },
-            "fields": {
-              "items": {
-                "component": "collection",
-                "model": "card"
-              }
             }
           }
         }
@@ -37,8 +31,19 @@
       }
     }
   ],
-  "models": 
-  [
+  "models": [
+    {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "items",
+          "label": "Cards",
+          "valueType": "card",
+          "multi": true
+        }
+      ]
+    },
     {
       "id": "card",
       "fields": [

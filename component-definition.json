@@ -92,12 +92,6 @@
                 "template": {
                   "name": "Cards",
                   "model": "cards"
-                },
-                "fields": {
-                  "items": {
-                    "component": "collection",
-                    "model": "card"
-                  }
                 }
               }
             }
