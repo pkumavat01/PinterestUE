@@ -51,7 +51,7 @@
         },
         {
           "component": "select",
-          "name": "classes",
+          "name": "variation",
           "label": "Card Variation",
           "options": [
             { "name": "Default", "value": "" },
