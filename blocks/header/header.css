@@ -157,6 +157,7 @@ header nav .nav-sections {
   display: none;
   visibility: hidden;
 }
+
 header .nav-brand > div,
 header .nav-tools > div {
   display: flex;
@@ -240,7 +241,7 @@ header nav .nav-search {
   align-items: center;
   width: 100%;
   max-width: none;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
 }
 
 header nav .nav-search input[type="text"] {
