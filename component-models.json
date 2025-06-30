@@ -143,32 +143,69 @@
   },
   {
     "id": "cards",
-    "fields": []
+    "fields": [
+      {
+        "component": "collection",
+        "name": "items",
+        "label": "Card Items",
+        "valueType": "array",
+        "model": "card"
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Container Style",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grid",
+            "value": "grid"
+          },
+          {
+            "name": "Carousel",
+            "value": "carousel"
+          },
+          {
+            "name": "Highlighted",
+            "value": "highlighted"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "card",
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false
+        "multi": false,
+        "valueType": "string"
       },
       {
         "component": "richtext",
         "name": "text",
-        "value": "",
         "label": "Text",
+        "value": "",
         "valueType": "string"
       },
       {
         "component": "select",
         "name": "classes",
+        "label": "Card Variation",
         "valueType": "string",
-        "label": "Classes for Variation",
-        "value": "big-card",
+        "value": "",
         "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
           {
             "name": "Big Card",
             "value": "big-card"
@@ -176,6 +213,10 @@
           {
             "name": "Small Card",
             "value": "small-card"
+          },
+          {
+            "name": "Long Card",
+            "value": "long-card"
           }
         ]
       }

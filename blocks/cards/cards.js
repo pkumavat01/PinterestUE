@@ -4,6 +4,15 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const ul = document.createElement('ul');
 
+  // Apply container class from the last <div> in the block (cards, grid, etc.)
+  const containerClassDiv = block.querySelector(':scope > div:last-child');
+  if (containerClassDiv && containerClassDiv.textContent.includes(',')) {
+    const containerClasses = containerClassDiv.textContent.split(',').map(s => s.trim());
+    containerClasses.forEach(cls => {
+      if (cls && cls !== 'cards') block.classList.add(cls);
+    });
+  }
+
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
@@ -11,7 +20,6 @@ export default function decorate(block) {
     const cardDivs = [...row.children];
     while (row.firstElementChild) li.append(row.firstElementChild);
 
-    // Assign classes to children
     [...li.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
         div.className = 'cards-card-image';
@@ -20,19 +28,19 @@ export default function decorate(block) {
       }
     });
 
-    // Extract and apply custom card variation class (e.g., 'big-card')
-    const classDiv = cardDivs[cardDivs.length - 1]; // Last div has the classes
+    // Apply class to each card item
+    const classDiv = cardDivs[cardDivs.length - 1]; // Last div has 'card, big-card'
     if (classDiv && classDiv.textContent.includes(',')) {
-      const classes = classDiv.textContent.split(',').map(s => s.trim()); // ['card', 'big-card']
+      const classes = classDiv.textContent.split(',').map(s => s.trim());
       classes.forEach((cls) => {
-        if (cls && cls !== 'card') li.classList.add(cls); // Add only meaningful classes
+        if (cls && cls !== 'card') li.classList.add(cls);
       });
     }
 
     ul.append(li);
   });
 
-  // Replace images with optimized versions
+  // Optimize all <img> inside <picture>
   ul.querySelectorAll('picture > img').forEach((img) => {
     const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
     moveInstrumentation(img, optimizedPic.querySelector('img'));
