@@ -28,6 +28,15 @@ export default function decorate(block) {
       }
     });
 
+    // Apply class to each card item
+    const classDiv = cardDivs[cardDivs.length - 1]; // Last div has 'card, big-card'
+    if (classDiv && classDiv.textContent.includes(',')) {
+      const classes = classDiv.textContent.split(',').map(s => s.trim());
+      classes.forEach((cls) => {
+        if (cls && cls !== 'card') li.classList.add(cls);
+      });
+    }
+
     ul.append(li);
   });
 
