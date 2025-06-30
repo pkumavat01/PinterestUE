@@ -28,13 +28,14 @@ export default function decorate(block) {
       }
     });
 
-    // Apply class to each card item
+    // Only add the selected class (not 'card') and hide the div that contains the class info
     const classDiv = cardDivs[cardDivs.length - 1]; // Last div has 'card, big-card'
-    if (classDiv && classDiv.textContent.includes(',')) {
+    if (classDiv && classDiv.textContent) {
       const classes = classDiv.textContent.split(',').map(s => s.trim());
       classes.forEach((cls) => {
         if (cls && cls !== 'card') li.classList.add(cls);
       });
+      classDiv.style.display = 'none'; // Hide the div that contains the class info
     }
 
     ul.append(li);
