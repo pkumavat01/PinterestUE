@@ -142,39 +142,27 @@
     ]
   },
   {
-    "id": "cards",
-    "fields": [
-      {
-        "component": "collection",
-        "name": "items",
-        "label": "Card Items",
-        "valueType": "array",
-        "model": "card"
-      }
-    ]
-  },
-  {
     "id": "card",
     "fields": [
       {
         "component": "reference",
+        "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
-        "valueType": "string"
+        "multi": false
       },
       {
         "component": "richtext",
         "name": "text",
-        "label": "Text",
         "value": "",
+        "label": "Text",
         "valueType": "string"
       },
       {
         "component": "select",
         "name": "classes",
-        "label": "Classes for Variation",
         "value": "big-card",
+        "label": "Classes for Variation",
         "valueType": "string",
         "options": [
           {
@@ -182,16 +170,24 @@
             "value": ""
           },
           {
-            "name": "Big Card",
+            "name": "Big",
             "value": "big-card"
           },
           {
-            "name": "Small Card",
-            "value": "small-card"
+            "name": "h3",
+            "value": "h3"
           },
           {
-            "name": "Long Card",
-            "value": "long-card"
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
           }
         ]
       }
