@@ -53,21 +53,33 @@
         {
           "component": "select",
           "name": "classes",
-          "value":"big-card",
-          "label": "Card Variation",
+          "value": "big-card",
+          "label": "Classes for Variation",
           "valueType": "string",
           "options": [
-            { 
+            {
               "name": "Default",
-              "value": "" 
+              "value": ""
             },
-            { 
-              "name": "Big", 
-              "value": "big-card" 
+            {
+              "name": "Big",
+              "value": "big-card"
             },
-            { 
-              "name": "Small",
-              "value": "small-card" 
+            {
+              "name": "h3",
+              "value": "h3"
+            },
+            {
+              "name": "h4",
+              "value": "h4"
+            },
+            {
+              "name": "h5",
+              "value": "h5"
+            },
+            {
+              "name": "h6",
+              "value": "h6"
             }
           ]
         }
