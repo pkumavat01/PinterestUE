@@ -161,8 +161,8 @@
       {
         "component": "select",
         "name": "classes",
-        "label": "Classes for Variation",
         "value": "big-card",
+        "label": "Classes for Variation",
         "valueType": "string",
         "options": [
           {
