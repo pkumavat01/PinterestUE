@@ -168,6 +168,13 @@
             "value": "long"
           }
         ]
+      },
+      {
+        "component": "collection",
+        "name": "items",
+        "label": "Card Items",
+        "valueType": "array",
+        "model": "card"
       }
     ]
   },
