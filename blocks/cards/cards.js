@@ -7,11 +7,6 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
-    // Check for variation class in the row dataset or textContent
-    const variation = row.dataset.variation || row.getAttribute('data-variation') || '';
-    if (variation === 'big-card' || variation === 'small-card') {
-      li.classList.add(variation);
-    }
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
