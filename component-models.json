@@ -182,24 +182,16 @@
             "value": ""
           },
           {
-            "name": "Big",
+            "name": "Big Card",
             "value": "big-card"
           },
           {
-            "name": "h3",
-            "value": "h3"
+            "name": "Small Card",
+            "value": "small-card"
           },
           {
-            "name": "h4",
-            "value": "h4"
-          },
-          {
-            "name": "h5",
-            "value": "h5"
-          },
-          {
-            "name": "h6",
-            "value": "h6"
+            "name": "Long Card",
+            "value": "long-card"
           }
         ]
       }
