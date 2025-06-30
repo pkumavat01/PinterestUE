@@ -142,27 +142,39 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "collection",
+        "name": "items",
+        "label": "Card Items",
+        "valueType": "array",
+        "model": "card"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false
+        "multi": false,
+        "valueType": "string"
       },
       {
         "component": "richtext",
         "name": "text",
-        "value": "",
         "label": "Text",
+        "value": "",
         "valueType": "string"
       },
       {
         "component": "select",
         "name": "classes",
-        "value": "big-card",
         "label": "Classes for Variation",
+        "value": "big-card",
         "valueType": "string",
         "options": [
           {
