@@ -48,6 +48,18 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "variation",
+          "label": "Card Variation",
+          "options": [
+            { "label": "Default", "value": "" },
+            { "label": "Big", "value": "big-card" },
+            { "label": "Small", "value": "small-card" }
+          ],
+          "valueType": "string",
+          "multi": false
         }
       ]
     }

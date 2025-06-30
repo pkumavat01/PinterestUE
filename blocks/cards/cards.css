@@ -12,6 +12,18 @@
   background-color: var(--background-color);
 }
 
+.cards > ul > li.big-card {
+  grid-column: span 2;
+  font-size: 1.25em;
+  padding: 24px;
+}
+
+.cards > ul > li.small-card {
+  font-size: 0.9em;
+  padding: 8px;
+  max-width: 200px;
+}
+
 .cards .cards-card-body {
   margin: 16px;
 }
