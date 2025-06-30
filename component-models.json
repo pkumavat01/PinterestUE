@@ -164,7 +164,7 @@
       },
       {
         "component": "select",
-        "name": "classes",
+        "name": "class",
         "valueType": "string",
         "label": "Classes for Variation",
         "value": "",
