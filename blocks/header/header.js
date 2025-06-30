@@ -138,10 +138,66 @@ export default async function decorate(block) {
     const searchContainer = document.createElement('div');
     searchContainer.className = 'nav-search';
     searchContainer.innerHTML = `
-      <img src="/icons/search.svg" alt="Search" class="nav-search-icon" />
-      <input type="text" placeholder="Search..." aria-label="Search" />
+      <div class="nav-search">
+        <img src="/icons/search.svg" alt="Search" class="nav-search-icon" />
+        <input type="text" placeholder="Search..." aria-label="Search" />
+        <div class="search-dropdown" style="display:none;"></div>
+      </div>
     `;
     navSections.prepend(searchContainer);
+
+    const searchInput = searchContainer.querySelector('input[type="text"]');
+    const dropdown = document.createElement('div');
+    dropdown.className = 'search-dropdown';
+    dropdown.style.display = 'none';
+    searchContainer.appendChild(dropdown);
+
+    // Example: get all cards from the page (or use suggestions from model)
+    function getAllCards() {
+      // This is a simple example, adapt as needed
+      return Array.from(document.querySelectorAll('.cards > ul > li')).map(li => ({
+        title: li.querySelector('.cards-card-body')?.textContent?.trim() || 'Untitled',
+        image: li.querySelector('img')?.src,
+        element: li
+      }));
+    }
+
+    searchInput.addEventListener('focus', () => {
+      const cards = getAllCards(); // or use curated suggestions
+      dropdown.innerHTML = cards.slice(0, 5).map(card => `
+        <div class="search-dropdown-card" data-url="${card.url}">
+          ${card.image ? `<img src="${card.image}" alt="" />` : ''}
+
+          <span>${card.title}</span>
+        </div>
+      `).join('');
+      dropdown.style.display = 'block';
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const value = e.target.value.toLowerCase();
+      const cards = getAllCards().filter(card => card.title.toLowerCase().includes(value));
+      dropdown.innerHTML = cards.slice(0, 5).map(card => `
+        <div class="search-dropdown-card" data-url="${card.url}">
+          ${card.image ? `<img src="${card.image}" alt="" />` : ''}
+
+          <span>${card.title}</span>
+        </div>
+      `).join('');
+      dropdown.style.display = cards.length ? 'block' : 'none';
+    });
+
+    searchInput.addEventListener('blur', () => {
+      setTimeout(() => { dropdown.style.display = 'none'; }, 200); // allow click
+    });
+
+    // Add click event to navigate
+    dropdown.addEventListener('click', (e) => {
+      const cardDiv = e.target.closest('.search-dropdown-card');
+      if (cardDiv && cardDiv.dataset.url) {
+        window.location.href = cardDiv.dataset.url;
+      }
+    });
 
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');

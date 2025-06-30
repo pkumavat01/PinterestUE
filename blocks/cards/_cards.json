@@ -45,7 +45,7 @@
             { "name": "Default", "value": "" },
             { "name": "Big Cards", "value": "big" },
             { "name": "Small Cards", "value": "small" },
-            { "name": "Long Cards", "value": "long block" }
+            { "name": "Long Cards", "value": "long" }
           ]
         }
       ]
@@ -65,6 +65,19 @@
           "name": "text",
           "value": "",
           "label": "Text",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "name": "searchSuggestions",
+          "label": "Search Suggestions",
+          "valueType": "card",
+          "multi": true
+        },
+        {
+          "component": "text",
+          "name": "url",
+          "label": "Card URL",
           "valueType": "string"
         }
       ]

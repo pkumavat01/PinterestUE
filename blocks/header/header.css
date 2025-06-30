@@ -267,4 +267,34 @@ header nav .nav-search .nav-search-icon {
   opacity: 0.7;
 }
 
+header nav .nav-search .search-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+  z-index: 10;
+  max-height: 300px;
+  overflow-y: auto;
+}
+header nav .nav-search .search-dropdown-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+header nav .nav-search .search-dropdown-card img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+header nav .nav-search .search-dropdown-card:hover {
+  background: #f5f5f5;
+}
+
 
