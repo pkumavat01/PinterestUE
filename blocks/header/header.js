@@ -62,6 +62,17 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
+function getAllCards() {
+  return Array.from(document.querySelectorAll('.cards > ul > li')).map((li) => {
+    const link = li.querySelector('a');
+    return {
+      title: li.querySelector('.cards-card-body')?.textContent?.trim() || 'Untitled',
+      image: li.querySelector('img')?.src,
+      url: link ? link.href : '',
+      element: li,
+    };
+  });
+}
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -152,32 +163,22 @@ export default async function decorate(block) {
     dropdown.style.display = 'none';
     searchContainer.appendChild(dropdown);
 
-    // Example: get all cards from the page (or use suggestions from model)
-    function getAllCards() {
-      // This is a simple example, adapt as needed
-      return Array.from(document.querySelectorAll('.cards > ul > li')).map(li => ({
-        title: li.querySelector('.cards-card-body')?.textContent?.trim() || 'Untitled',
-        image: li.querySelector('img')?.src,
-        element: li
-      }));
-    }
-
     searchInput.addEventListener('focus', () => {
       const cards = getAllCards(); // or use curated suggestions
-      dropdown.innerHTML = cards.slice(0, 5).map(card => `
+      dropdown.innerHTML = cards.slice(0, 5).map((card) => `
         <div class="search-dropdown-card" data-url="${card.url}">
           ${card.image ? `<img src="${card.image}" alt="" />` : ''}
 
           <span>${card.title}</span>
         </div>
       `).join('');
-      dropdown.style.display = 'block';
+      dropdown.style.display = 'grid';
     });
 
     searchInput.addEventListener('input', (e) => {
       const value = e.target.value.toLowerCase();
-      const cards = getAllCards().filter(card => card.title.toLowerCase().includes(value));
-      dropdown.innerHTML = cards.slice(0, 5).map(card => `
+      const cards = getAllCards().filter((card) => card.title.toLowerCase().includes(value));
+      dropdown.innerHTML = cards.slice(0, 5).map((card) => `
         <div class="search-dropdown-card" data-url="${card.url}">
           ${card.image ? `<img src="${card.image}" alt="" />` : ''}
 
