@@ -147,7 +147,7 @@
       {
         "component": "select",
         "name": "classes",
-        "label": "Card Layout",
+        "label": "Cards Layout",
         "valueType": "string",
         "value": "",
         "options": [
