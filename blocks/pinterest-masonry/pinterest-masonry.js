@@ -7,13 +7,17 @@ export default function decorate(block) {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) {
-        div.className = 'cards-card-image';
-      } else {
-        div.className = 'cards-card-body';
+    // Merge all .cards-card-body into one
+    const bodies = li.querySelectorAll('.cards-card-body');
+    if (bodies.length > 1) {
+      const mainBody = bodies[0];
+      for (let i = 1; i < bodies.length; i += 1) {
+        while (bodies[i].firstChild) {
+          mainBody.appendChild(bodies[i].firstChild);
+        }
+        bodies[i].remove();
       }
-    });
+    }
     // Find the favorite button (with :heart: text) if present
     const favBtn = li.querySelector('button');
     if (favBtn && favBtn.textContent.trim() === ':heart:') {
