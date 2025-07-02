@@ -14,24 +14,17 @@ export default function decorate(block) {
         div.className = 'cards-card-body';
       }
     });
-    // Add heart icon button (default: :heart:, toggle to :heart-fill:)
-    const heartBtn = document.createElement('button');
-    heartBtn.type = 'button';
-    heartBtn.className = 'heart-btn';
-    heartBtn.setAttribute('aria-label', 'Favorite');
-    // Default icon is :heart:
-    heartBtn.innerHTML = '<span class="icon icon-heart"></span>';
-    heartBtn.addEventListener('click', function() {
-      const icon = heartBtn.querySelector('span');
-      if (icon.classList.contains('icon-heart')) {
-        icon.classList.remove('icon-heart');
-        icon.classList.add('icon-heart-fill');
-      } else {
-        icon.classList.remove('icon-heart-fill');
-        icon.classList.add('icon-heart');
-      }
-    });
-    li.appendChild(heartBtn);
+    // Find the favorite button (with :heart: text) if present
+    const favBtn = li.querySelector('button');
+    if (favBtn && favBtn.textContent.trim() === ':heart:') {
+      favBtn.addEventListener('click', function() {
+        if (favBtn.textContent.trim() === ':heart:') {
+          favBtn.textContent = ':heart-fill:';
+        } else {
+          favBtn.textContent = ':heart:';
+        }
+      });
+    }
     ul.append(li);
   });
 
