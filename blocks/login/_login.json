@@ -22,24 +22,22 @@
       "fields": [
         {
           "component": "text",
-          "name": "usernameLabel",
-          "label": "Username Label",
-          "valueType": "string",
-          "value": "Username"
+          "name": "username",
+          "label": "Username",
+          "valueType": "string"
         },
         {
-          "component": "text",
-          "name": "passwordLabel",
-          "label": "Password Label",
-          "valueType": "string",
-          "value": "Password"
+          "component": "password",
+          "name": "password",
+          "label": "Password",
+          "valueType": "string"
         },
         {
-          "component": "text",
-          "name": "buttonLabel",
-          "label": "Button Label",
-          "valueType": "string",
-          "value": "Login"
+          "component": "button",
+          "name": "login",
+          "label": "Login",
+          "text": "Login",
+          "valueType": "string"
         }
       ]
     }
