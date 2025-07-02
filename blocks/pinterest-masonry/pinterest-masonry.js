@@ -19,6 +19,7 @@ export default function decorate(block) {
     const bodyDiv = document.createElement('div');
     bodyDiv.className = 'cards-card-body';
     let iconSpan = null;
+    let iconText = ':heart:';
 
     // Group all non-image content into bodyDiv, but extract icon span if present
     [...row.children].forEach((div) => {
@@ -30,6 +31,9 @@ export default function decorate(block) {
         const foundIcon = div.querySelector('span.icon');
         if (foundIcon && !iconSpan) {
           iconSpan = foundIcon;
+        } else if (div.classList.contains('icon-field')) {
+          // If this div is the icon field, get its text
+          iconText = div.textContent.trim() || ':heart:';
         } else {
           bodyDiv.appendChild(div);
         }
@@ -37,19 +41,18 @@ export default function decorate(block) {
     });
 
     if (imageDiv) {
-      // Use a span with a Unicode heart
+      // Use a span with text from the icon field
       const cardKey = li.dataset.aueResource || `masonry-card-${cardIdx}`;
       if (!iconSpan) {
         iconSpan = document.createElement('span');
         iconSpan.className = 'icon-heart';
       }
       // Set initial state
+      iconSpan.textContent = iconText;
       if (favorites[cardKey] === 'fill') {
-        iconSpan.textContent = ':heart-fill:';
         iconSpan.classList.add('icon-heart-fill');
         iconSpan.classList.remove('icon-heart-outline');
       } else {
-        iconSpan.textContent = ':heart:';
         iconSpan.classList.add('icon-heart-outline');
         iconSpan.classList.remove('icon-heart-fill');
       }
@@ -59,12 +62,10 @@ export default function decorate(block) {
       iconSpan.setAttribute('aria-label', 'Toggle favorite');
       iconSpan.addEventListener('click', () => {
         if (iconSpan.classList.contains('icon-heart-outline')) {
-          iconSpan.textContent = ':heart:';
           iconSpan.classList.remove('icon-heart-outline');
           iconSpan.classList.add('icon-heart-fill');
           favorites[cardKey] = 'fill';
         } else {
-          iconSpan.textContent = ':heart-fill:';
           iconSpan.classList.remove('icon-heart-fill');
           iconSpan.classList.add('icon-heart-outline');
           delete favorites[cardKey];
