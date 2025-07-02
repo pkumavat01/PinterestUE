@@ -27,8 +27,49 @@
           "valueType": "string",
           "value": "long",
           "options": [
-            { "name": "Pinterest Masonry", "value": "long" }
+            { "name": "Long Cards", "value": "long" }
           ]
+        },
+        {
+            "component": "text",
+            "name": "columns",
+            "label": "Columns",
+            "valueType": "number",
+            "value": "5",
+            "description": "Number of columns for the masonry layout"
+        },
+        {
+            "component": "reference",
+            "valueType": "string",  
+            "name": "image",
+            "label": "Image",
+            "description": "Image to be displayed in the block",
+            "value": "",
+            "required": true
+        },
+        {
+            "component": "text",
+            "name": "title",
+            "label": "Title",
+            "valueType": "string",
+            "value": "",
+            "description": "Title for the block"
+        },
+        {
+            "component": "text",
+            "name": "description",
+            "label": "Description",
+            "valueType": "string",
+            "value": "",
+            "description": "Description for the block"
+        },
+        {
+            "component": "toggle",  
+            "name": "showLikeOverlay",
+            "label": "Show Like Overlay",
+            "valueType": "boolean",
+            "value": true,
+            "description": "Toggle to show or hide the like overlay on images"
         }
       ]
     }
