@@ -3,7 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
+  [...block.children].forEach((row, cardIdx) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
 
@@ -28,8 +28,27 @@ export default function decorate(block) {
     const iconSpan = bodyDiv.querySelector('span.icon');
     if (iconSpan) {
       iconSpan.style.cursor = 'pointer';
+      // Use a unique key for each card (e.g., by index or a data attribute)
+      const cardKey = li.dataset.aueResource || `masonry-card-${cardIdx}`;
+      // On load, set state from localStorage
+      const saved = localStorage.getItem(`masonry-fav-${cardKey}`);
+      const img = iconSpan.querySelector('img');
+      if (saved === 'fill') {
+        iconSpan.classList.remove('icon-heart');
+        iconSpan.classList.add('icon-heart-fill');
+        if (img) {
+          img.setAttribute('data-icon-name', 'heart-fill');
+          img.setAttribute('src', '/icons/heart-fill.svg');
+        }
+      } else {
+        iconSpan.classList.remove('icon-heart-fill');
+        iconSpan.classList.add('icon-heart');
+        if (img) {
+          img.setAttribute('data-icon-name', 'heart');
+          img.setAttribute('src', '/icons/heart.svg');
+        }
+      }
       iconSpan.addEventListener('click', function () {
-        const img = iconSpan.querySelector('img');
         if (iconSpan.classList.contains('icon-heart')) {
           iconSpan.classList.remove('icon-heart');
           iconSpan.classList.add('icon-heart-fill');
@@ -37,6 +56,7 @@ export default function decorate(block) {
             img.setAttribute('data-icon-name', 'heart-fill');
             img.setAttribute('src', '/icons/heart-fill.svg');
           }
+          localStorage.setItem(`masonry-fav-${cardKey}`, 'fill');
         } else {
           iconSpan.classList.remove('icon-heart-fill');
           iconSpan.classList.add('icon-heart');
@@ -44,6 +64,7 @@ export default function decorate(block) {
             img.setAttribute('data-icon-name', 'heart');
             img.setAttribute('src', '/icons/heart.svg');
           }
+          localStorage.setItem(`masonry-fav-${cardKey}`, 'empty');
         }
       });
     }
