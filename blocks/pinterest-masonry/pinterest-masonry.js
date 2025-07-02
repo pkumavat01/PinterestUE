@@ -24,30 +24,19 @@ export default function decorate(block) {
     if (imageDiv) li.appendChild(imageDiv);
     if (bodyDiv.childNodes.length) li.appendChild(bodyDiv);
 
-    // Find the icon name from the UE text field and create a toggle button if present
-    const iconField = bodyDiv.querySelector('[data-aue-prop="icon"]');
-    if (iconField) {
-      const iconText = iconField.textContent.trim();
-      if (iconText.startsWith(':') && iconText.endsWith(':')) {
-        const iconName = iconText.replace(/:/g, '');
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'icon-toggle-btn';
-        btn.setAttribute('aria-label', `Toggle ${iconName}`);
-        const span = document.createElement('span');
-        span.className = `icon icon-${iconName}`;
-        btn.appendChild(span);
-        iconField.replaceWith(btn);
-        btn.addEventListener('click', function () {
-          if (span.classList.contains(`icon-${iconName}`)) {
-            span.classList.remove(`icon-${iconName}`);
-            span.classList.add(`icon-${iconName}-fill`);
-          } else {
-            span.classList.remove(`icon-${iconName}-fill`);
-            span.classList.add(`icon-${iconName}`);
-          }
-        });
-      }
+    // Directly access the icon span and toggle its class on click
+    const iconSpan = bodyDiv.querySelector('span.icon');
+    if (iconSpan) {
+      iconSpan.style.cursor = 'pointer';
+      iconSpan.addEventListener('click', function () {
+        if (iconSpan.classList.contains('icon-heart')) {
+          iconSpan.classList.remove('icon-heart');
+          iconSpan.classList.add('icon-heart-fill');
+        } else {
+          iconSpan.classList.remove('icon-heart-fill');
+          iconSpan.classList.add('icon-heart');
+        }
+      });
     }
 
     ul.append(li);
