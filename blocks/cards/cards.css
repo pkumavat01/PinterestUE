@@ -105,6 +105,7 @@
 .cards .cards-card-body .button-container a{
   display: none;
 }
+
 /* Long Card Layout */
 .cards.long.block ul {
   columns: 200px;
