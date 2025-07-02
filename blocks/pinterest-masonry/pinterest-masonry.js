@@ -25,6 +25,5 @@ export default function decorate(block) {
 
   block.textContent = '';
   block.append(ul);
-  // Add masonry classes for styling
-  block.classList.add('long', 'block', 'pinterest-masonry');
+  block.classList.add('masonry','block' );
 }
