@@ -3,6 +3,34 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 export default function decorate(block) {
   block.classList.add('cards', 'long', 'block');
 
+  // Fetch the number of cards to display from the 'count' field (Universal Editor)
+  let numCards = 0;
+  const countField = block.querySelector('[name="count"]');
+  if (countField && countField.value) {
+    numCards = parseInt(countField.value, 10) || 0;
+  }
+  // If numCards is set and there are fewer cards than needed, add empty cards
+  if (numCards > 0) {
+    let ulEl = block.querySelector('ul');
+    if (!ulEl) {
+      ulEl = document.createElement('ul');
+      block.appendChild(ulEl);
+    }
+    const currentCards = ulEl.querySelectorAll('li').length;
+    for (let i = currentCards; i < numCards; i += 1) {
+      const li = document.createElement('li');
+      li.className = 'card';
+      li.innerHTML = `
+        <div class="cards-card-image"><img src="" alt="" /></div>
+        <div class="cards-card-body">
+          <h5>Title</h5>
+          <p>Description</p>
+        </div>
+      `;
+      ulEl.appendChild(li);
+    }
+  }
+
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {
