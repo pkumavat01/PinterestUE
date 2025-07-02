@@ -19,7 +19,6 @@ export default function decorate(block) {
     const bodyDiv = document.createElement('div');
     bodyDiv.className = 'cards-card-body';
     let iconSpan = null;
-    // --- ICON: Get the icon text from the UE model field (default :heart:) ---
     let iconText = ':heart:';
 
     // Group all non-image content into bodyDiv, but extract icon span if present
@@ -28,12 +27,12 @@ export default function decorate(block) {
         imageDiv = div;
         imageDiv.className = 'cards-card-image';
       } else {
-        // --- ICON: If this div contains the icon span, extract it ---
+        // If this div contains the icon span, extract it
         const foundIcon = div.querySelector('span.icon');
         if (foundIcon && !iconSpan) {
           iconSpan = foundIcon;
-        // --- ICON: If this div is the icon field, get its text ---
         } else if (div.classList.contains('icon-field')) {
+          // If this div is the icon field, get its text
           iconText = div.textContent.trim() || ':heart:';
         } else {
           bodyDiv.appendChild(div);
@@ -42,26 +41,34 @@ export default function decorate(block) {
     });
 
     if (imageDiv) {
-      // --- ICON: Create or use a span for the icon, set its text from the icon field ---
+      // Use a span with text from the icon field
       const cardKey = li.dataset.aueResource || `masonry-card-${cardIdx}`;
       if (!iconSpan) {
         iconSpan = document.createElement('span');
         iconSpan.className = 'icon-heart';
       }
-      // --- ICON: Always display the iconText from UE, do not change on toggle ---
+      // Set initial state
       iconSpan.textContent = iconText;
+      if (favorites[cardKey] === 'fill') {
+        iconSpan.classList.add('icon-heart-fill');
+        iconSpan.classList.remove('icon-heart-outline');
+      } else {
+        iconSpan.classList.add('icon-heart-outline');
+        iconSpan.classList.remove('icon-heart-fill');
+      }
       iconSpan.style.cursor = 'pointer';
       iconSpan.setAttribute('tabindex', '0');
       iconSpan.setAttribute('role', 'button');
       iconSpan.setAttribute('aria-label', 'Toggle favorite');
       iconSpan.addEventListener('click', () => {
-        // --- ICON: Only persist favorite state, do not change icon text ---
-        if (favorites[cardKey] === 'fill') {
-          iconSpan.textContent = iconText;
-          delete favorites[cardKey];
-        } else {
-          iconSpan.textContent = iconText;
+        if (iconSpan.classList.contains('icon-heart-outline')) {
+          iconSpan.classList.remove('icon-heart-outline');
+          iconSpan.classList.add('icon-heart-fill');
           favorites[cardKey] = 'fill';
+        } else {
+          iconSpan.classList.remove('icon-heart-fill');
+          iconSpan.classList.add('icon-heart-outline');
+          delete favorites[cardKey];
         }
         localStorage.setItem('masonry-favorites', JSON.stringify(favorites));
       });
