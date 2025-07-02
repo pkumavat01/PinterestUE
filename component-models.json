@@ -301,20 +301,12 @@
         ]
       },
       {
-        "component": "text",
-        "name": "columns",
-        "label": "Columns",
+        "component": "number",
+        "name": "count",
+        "label": "Number of Cards",
         "valueType": "number",
-        "value": "5",
-        "description": "Number of columns for the masonry layout"
-      },
-      {
-        "component": "reference",
-        "name": "cards",
-        "label": "Cards",
-        "valueType": "card",
-        "multi": true,
-        "description": "Add multiple cards/images to the masonry layout"
+        "value": 3,
+        "description": "How many cards should be shown?"
       }
     ]
   },

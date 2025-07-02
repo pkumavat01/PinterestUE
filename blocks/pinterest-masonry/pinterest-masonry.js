@@ -1,56 +1,34 @@
-// pinterest-masonry.js
-// Custom block for Pinterest-style masonry layout, mobile-first
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  // Add 'long' and 'block' classes for styling
-  block.classList.add('long', 'block');
+  block.classList.add('cards', 'long', 'block');
 
-  // Find the list of cards (assume ul > li structure)
-  const ul = block.querySelector('ul');
-  if (!ul) return;
+  const ul = document.createElement('ul');
 
-  // Make sure all li are styled for masonry
-  ul.querySelectorAll('li').forEach(li => {
-    li.style.display = 'inline-block';
-    li.style.width = '100%';
-    li.style.margin = '0 0 20px';
-    li.style.borderRadius = '8px';
-    li.style.transition = 'transform 0.2s';
-    li.style.position = 'relative';
-    li.style.breakInside = 'avoid';
+  [...block.children].forEach((row) => {
+    const li = document.createElement('li');
+    li.classList.add('masonry-card');
+
+    const imageCell = row.querySelector('picture');
+    const title = row.querySelector('h1, h2, h3, h4, h5, h6');
+    const description = row.querySelector('p');
+
+    if (imageCell) {
+      const imageDiv = document.createElement('div');
+      imageDiv.className = 'cards-card-image';
+      imageDiv.appendChild(imageCell);
+      li.appendChild(imageDiv);
+    }
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'cards-card-body';
+    if (title) bodyDiv.appendChild(title);
+    if (description) bodyDiv.appendChild(description);
+
+    li.appendChild(bodyDiv);
+    ul.appendChild(li);
   });
 
-  // Responsive: columns for mobile-first, using data-columns attribute if present
-  function setColumns() {
-    let columns = 3; // default
-    // Try to get columns from block dataset or attribute
-    if (block.dataset.columns) {
-      columns = parseInt(block.dataset.columns, 10) || columns;
-    } else {
-      // Try to find a field in the block for columns
-      const columnsField = block.querySelector('[name="columns"]');
-      if (columnsField && columnsField.value) {
-        columns = parseInt(columnsField.value, 10) || columns;
-      }
-    }
-    // Responsive override
-    if (window.innerWidth < 600) {
-      ul.style.columns = '1';
-    } else if (window.innerWidth < 900) {
-      ul.style.columns = Math.min(2, columns).toString();
-    } else {
-      ul.style.columns = columns.toString();
-    }
-    ul.style.columnGap = '14px';
-    ul.style.padding = '0';
-  }
-  // Set columns from model if available
-  if (block.hasAttribute('data-columns')) {
-    block.dataset.columns = block.getAttribute('data-columns');
-  }
-  setColumns();
-  window.addEventListener('resize', setColumns);
-
-  // Add block-specific class for CSS targeting
-  block.classList.add('pinterest-masonry');
+  block.textContent = '';
+  block.append(ul);
 }
