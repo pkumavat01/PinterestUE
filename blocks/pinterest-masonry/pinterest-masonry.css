@@ -3,13 +3,13 @@
    Reference: .long class from cards
 */
 
-.pinterest-masonry.long.block ul {
-  columns: 1;
+.masonry.block ul {
+  columns: 1 !important;
   column-gap: 14px;
-  padding: 0;
+  padding:0;
 }
 
-.pinterest-masonry.long.block ul li {
+.masonry.block ul li {
   display: inline-block;
   width: 100%;
   margin: 0 0 20px;
@@ -19,11 +19,11 @@
   break-inside: avoid;
 }
 
-.pinterest-masonry.long.block ul li:hover {
+.masonry.block ul li:hover {
   transform: scale(1.02);
 }
 
-.pinterest-masonry.long.block .cards-card-image img {
+.masonry.block .cards-card-image img {
   height: auto;
   display: block;
   border-bottom: 1px solid #eee;
@@ -31,7 +31,7 @@
   object-fit: cover;
 }
 
-.pinterest-masonry.long.block .cards-card-body :where(h5,h6,h4,p a) {
+.masonry.block .cards-card-body :where(h5,h6,h4,p a) {
   margin-top: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -41,7 +41,7 @@
   text-overflow: ellipsis;
 }
 
-.pinterest-masonry.long.block .button-carousel {
+.masonry.block .button-carousel {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -49,11 +49,11 @@
   position: relative;
 }
 
-.pinterest-masonry.long.block .button-carousel .button-container {
+.masonry.block .button-carousel .button-container {
   margin: 0.4rem 0 0;
 }
 
-.pinterest-masonry.long.block .cards-card-body p:first-of-type {
+.masonry.block .cards-card-body p:first-of-type {
   margin-top: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -64,7 +64,7 @@
   line-height: 18px;
 }
 
-.ideas-page .pinterest-masonry.long.block .cards-card-body p:nth-of-type(2) {
+.ideas-page .masonry.block .cards-card-body p:nth-of-type(2) {
   margin-top: 0;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -76,36 +76,36 @@
   align-items: center;
 }
 
-.pinterest-masonry.long.block .cards-card-body p:last-of-type img,
-.pinterest-masonry.long.block .cards-card-body p:last-of-type picture {
+.masonry.block .cards-card-body p:last-of-type img,
+.masonry.block .cards-card-body p:last-of-type picture {
   width: 30px;
   height: 30px;
 }
 
-.pinterest-masonry.long.block .button-carousel .button-container a {
+.masonry.block .button-carousel .button-container a {
   margin: 0;
   background-color: var(--overlay-background-color);
   color: var(--text-color);
   font-weight: bold;
 }
 
-.pinterest-masonry.long.block .button-carousel::-webkit-scrollbar {
+.masonry.block .button-carousel::-webkit-scrollbar {
   display: none;
 }
 
-.pinterest-masonry.long.block .cards-card-image {
+.masonry.block .cards-card-image {
   position: relative;
 }
 
 /* Responsive columns for mobile-first */
 @media (min-width: 600px) {
-  .pinterest-masonry.long.block ul {
-    columns: 3;
+  .masonry.block ul {
+    columns: 3 !important;
   }
 }
 @media (min-width: 900px) {
-  .pinterest-masonry.long.block ul {
-    columns: 5;
+  .masonry.block ul {
+    columns: 5 !important;
   }
 }
 
