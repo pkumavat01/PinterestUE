@@ -62,17 +62,12 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "name": "searchSuggestions",
-          "label": "Search Suggestions",
-          "valueType": "card",
-          "multi": true
-        },
-        {
-          "component": "text",
-          "name": "url",
-          "label": "Card URL",
-          "valueType": "string"
+            "component": "text",    
+            "name": "description",
+            "label": "Description",
+            "valueType": "string",
+            "value": "This is a description for the masonry card."
+        
         }
       ]
     }
