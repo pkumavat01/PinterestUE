@@ -21,6 +21,13 @@
           "name": "keywords",
           "multi": true,
           "label": "Keywords"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "template",
+          "label": "Template Name",
+          "description": "The name of the template used for this page (for metadata or analytics)"
         }
       ]
     }
