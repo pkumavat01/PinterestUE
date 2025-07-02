@@ -310,36 +310,35 @@
       },
       {
         "component": "reference",
+        "name": "cards",
+        "label": "Cards",
+        "valueType": "card",
+        "multi": true,
+        "description": "Add multiple cards/images to the masonry layout"
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "fields": [
+      {
+        "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "description": "Image to be displayed in the block",
-        "value": "",
-        "required": true
+        "multi": false
       },
       {
         "component": "text",
         "name": "title",
         "label": "Title",
-        "valueType": "string",
-        "value": "",
-        "description": "Title for the block"
+        "valueType": "string"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
-        "valueType": "string",
-        "value": "",
-        "description": "Description for the block"
-      },
-      {
-        "component": "toggle",
-        "name": "showLikeOverlay",
-        "label": "Show Like Overlay",
-        "valueType": "boolean",
-        "value": true,
-        "description": "Toggle to show or hide the like overlay on images"
+        "valueType": "string"
       }
     ]
   }
