@@ -37,47 +37,41 @@ export default function decorate(block) {
     });
 
     if (imageDiv) {
-      if (iconSpan) {
-        // Persisted favorite logic
-        const cardKey = li.dataset.aueResource || `masonry-card-${cardIdx}`;
-        const img = iconSpan.querySelector('img');
-        if (favorites[cardKey] === 'fill') {
-          iconSpan.classList.remove('icon-heart');
-          iconSpan.classList.add('icon-heart-fill');
-          if (img) {
-            img.setAttribute('data-icon-name', 'heart-fill');
-            img.setAttribute('src', '/icons/heart-fill.svg');
-          }
-        } else {
-          iconSpan.classList.remove('icon-heart-fill');
-          iconSpan.classList.add('icon-heart');
-          if (img) {
-            img.setAttribute('data-icon-name', 'heart');
-            img.setAttribute('src', '/icons/heart.svg');
-          }
-        }
-        iconSpan.addEventListener('click', () => {
-          if (iconSpan.classList.contains('icon-heart')) {
-            iconSpan.classList.remove('icon-heart');
-            iconSpan.classList.add('icon-heart-fill');
-            if (img) {
-              img.setAttribute('data-icon-name', 'heart-fill');
-              img.setAttribute('src', '/icons/heart-fill.svg');
-            }
-            favorites[cardKey] = 'fill';
-          } else {
-            iconSpan.classList.remove('icon-heart-fill');
-            iconSpan.classList.add('icon-heart');
-            if (img) {
-              img.setAttribute('data-icon-name', 'heart');
-              img.setAttribute('src', '/icons/heart.svg');
-            }
-            delete favorites[cardKey];
-          }
-          localStorage.setItem('masonry-favorites', JSON.stringify(favorites));
-        });
-        imageDiv.appendChild(iconSpan);
+      // Use a span with a Unicode heart
+      const cardKey = li.dataset.aueResource || `masonry-card-${cardIdx}`;
+      if (!iconSpan) {
+        iconSpan = document.createElement('span');
+        iconSpan.className = 'icon-heart';
       }
+      // Set initial state
+      if (favorites[cardKey] === 'fill') {
+        iconSpan.textContent = ':heart-fill:';
+        iconSpan.classList.add('icon-heart-fill');
+        iconSpan.classList.remove('icon-heart-outline');
+      } else {
+        iconSpan.textContent = ':heart:';
+        iconSpan.classList.add('icon-heart-outline');
+        iconSpan.classList.remove('icon-heart-fill');
+      }
+      iconSpan.style.cursor = 'pointer';
+      iconSpan.setAttribute('tabindex', '0');
+      iconSpan.setAttribute('role', 'button');
+      iconSpan.setAttribute('aria-label', 'Toggle favorite');
+      iconSpan.addEventListener('click', () => {
+        if (iconSpan.classList.contains('icon-heart-outline')) {
+          iconSpan.textContent = ':heart:';
+          iconSpan.classList.remove('icon-heart-outline');
+          iconSpan.classList.add('icon-heart-fill');
+          favorites[cardKey] = 'fill';
+        } else {
+          iconSpan.textContent = ':heart-fill:';
+          iconSpan.classList.remove('icon-heart-fill');
+          iconSpan.classList.add('icon-heart-outline');
+          delete favorites[cardKey];
+        }
+        localStorage.setItem('masonry-favorites', JSON.stringify(favorites));
+      });
+      imageDiv.appendChild(iconSpan);
       li.appendChild(imageDiv);
     }
     if (bodyDiv.childNodes.length) li.appendChild(bodyDiv);
