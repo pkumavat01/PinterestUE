@@ -283,5 +283,51 @@
         "value": "Login"
       }
     ]
+  },
+  {
+    "id": "pinterest-masonry",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "columns",
+        "value": "5",
+        "label": "Columns"
+      }
+    ]
+  },
+  {
+    "id": "masonry-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "value": "This is a description for the masonry card."
+      },
+      {
+        "component": "text",
+        "name": "icon",
+        "label": "Icon Name",
+        "valueType": "string",
+        "value": ":heart:",
+        "description": "Name of the icon to use for this card (e.g., 'heart', 'star', etc.)"
+      }
+    ]
   }
 ]
