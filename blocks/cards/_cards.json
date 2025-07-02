@@ -8,7 +8,8 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "cards": "1"
+              "name": "Cards",
+              "model": "cards"
             }
           }
         }
@@ -20,9 +21,10 @@
       "plugins": {
         "xwalk": {
           "page": {
-            "resourceType": "core/franklin/components/item/v1/item",
+            "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "card": "1"
+              "name": "Card",
+              "model": "card"
             }
           }
         }
@@ -36,7 +38,7 @@
         {
           "component": "select",
           "name": "classes",
-          "label": "Card Layout",
+          "label": "Cards Layout",
           "valueType": "string",
           "value": "",
           "options": [
@@ -84,18 +86,7 @@
   "filters": [
     {
       "id": "cards",
-      "components": [
-        "card"
-      ]
-    },
-    {
-      "id": "card",
-      "components": [
-        "image",
-        "text",
-        "button",
-        "title"
-      ]
+      "components": ["card"]
     }
   ]
 }
