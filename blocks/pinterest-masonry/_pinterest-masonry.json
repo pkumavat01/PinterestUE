@@ -43,6 +43,38 @@
           "label": "Columns"
         }
       ]
+    },
+    {
+      "id": "masonry-card",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "name": "searchSuggestions",
+          "label": "Search Suggestions",
+          "valueType": "card",
+          "multi": true
+        },
+        {
+          "component": "text",
+          "name": "url",
+          "label": "Card URL",
+          "valueType": "string"
+        }
+      ]
     }
   ],
   "filters": [
