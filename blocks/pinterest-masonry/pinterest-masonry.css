@@ -97,6 +97,29 @@
   position: relative;
 }
 
+/* Favorite button styles */
+.masonry.long.block .favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 0;
+}
+
+.masonry.long.block .favorite-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: #ccc;
+  transition: fill 0.2s;
+}
+
+.masonry.long.block .favorite-btn.favorited svg {
+  fill: #e60023;
+}
+
 /* Responsive columns for mobile-first */
 @media (min-width: 600px) {
   .masonry.block ul {

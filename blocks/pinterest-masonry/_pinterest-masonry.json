@@ -68,6 +68,14 @@
             "valueType": "string",
             "value": "This is a description for the masonry card."
         
+        },
+        {
+          "component": "toggle",
+          "name": "favorited",
+          "label": "Favorited",
+          "valueType": "boolean",
+          "value": false,
+          "description": "Mark this card as favorited (shows a filled heart)"
         }
       ]
     }
