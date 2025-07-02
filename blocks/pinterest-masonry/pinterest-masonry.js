@@ -20,17 +20,33 @@ export default function decorate(block) {
     li.style.breakInside = 'avoid';
   });
 
-  // Responsive: columns for mobile-first
+  // Responsive: columns for mobile-first, using data-columns attribute if present
   function setColumns() {
+    let columns = 3; // default
+    // Try to get columns from block dataset or attribute
+    if (block.dataset.columns) {
+      columns = parseInt(block.dataset.columns, 10) || columns;
+    } else {
+      // Try to find a field in the block for columns
+      const columnsField = block.querySelector('[name="columns"]');
+      if (columnsField && columnsField.value) {
+        columns = parseInt(columnsField.value, 10) || columns;
+      }
+    }
+    // Responsive override
     if (window.innerWidth < 600) {
       ul.style.columns = '1';
     } else if (window.innerWidth < 900) {
-      ul.style.columns = '2';
+      ul.style.columns = Math.min(2, columns).toString();
     } else {
-      ul.style.columns = '3';
+      ul.style.columns = columns.toString();
     }
     ul.style.columnGap = '14px';
     ul.style.padding = '0';
+  }
+  // Set columns from model if available
+  if (block.hasAttribute('data-columns')) {
+    block.dataset.columns = block.getAttribute('data-columns');
   }
   setColumns();
   window.addEventListener('resize', setColumns);
