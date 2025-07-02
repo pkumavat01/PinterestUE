@@ -290,6 +290,11 @@ header nav .nav-search .nav-search-icon {
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   padding: 2rem;
+  display: none;
+}
+
+.search-dropdown.show {
+  display: grid !important;
 }
 
 .search-dropdown-card {
@@ -325,6 +330,30 @@ header nav .nav-search .nav-search-icon {
 
 .search-dropdown-card:hover {
   background: #f5f5f5;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  display: inline-block !important;
+}
+
+/* Show/hide nav dropdown on mobile */
+body.nav-open {
+  overflow-y: hidden;
+}
+
+/* Show/hide search dropdown */
+.search-dropdown {
+  display: none;
+}
+.search-dropdown.show {
+  display: grid !important;
+}
+
+/* Logout button margin */
+.logout-margin {
+  margin-left: 1rem;
 }
 
 

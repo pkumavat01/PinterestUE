@@ -149,6 +149,41 @@
     ]
   },
   {
+    "id": "cards-carousel",
+    "fields": [
+      {
+        "component": "array",
+        "name": "cards",
+        "label": "Cards",
+        "items": {
+          "type": "object",
+          "fields": [
+            {
+              "component": "text",
+              "name": "title",
+              "label": "Title"
+            },
+            {
+              "component": "text",
+              "name": "image",
+              "label": "Image URL"
+            },
+            {
+              "component": "text",
+              "name": "description",
+              "label": "Description"
+            },
+            {
+              "component": "text",
+              "name": "url",
+              "label": "Link URL"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
     "id": "cards",
     "fields": [
       {

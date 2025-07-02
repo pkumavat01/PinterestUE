@@ -82,7 +82,7 @@ function getAllCards() {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
+  document.body.classList.toggle('nav-open', !(expanded || isDesktop.matches));
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
@@ -172,7 +172,7 @@ export default async function decorate(block) {
           <span>${card.title}</span>
         </div>
       `).join('');
-      dropdown.style.display = 'grid';
+      dropdown.classList.add('show');
     });
 
     searchInput.addEventListener('input', (e) => {
@@ -185,11 +185,15 @@ export default async function decorate(block) {
           <span>${card.title}</span>
         </div>
       `).join('');
-      dropdown.style.display = cards.length ? 'block' : 'none';
+      if (cards.length) {
+        dropdown.classList.add('show');
+      } else {
+        dropdown.classList.remove('show');
+      }
     });
 
     searchInput.addEventListener('blur', () => {
-      setTimeout(() => { dropdown.style.display = 'none'; }, 200); // allow click
+      setTimeout(() => { dropdown.classList.remove('show'); }, 200); // allow click
     });
 
     // Add click event to navigate
@@ -224,6 +228,36 @@ export default async function decorate(block) {
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+
+  // LOGIN/LOGOUT BUTTON LOGIC 
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    
+    const loginBtn = navTools.querySelector('a[title="Login"]');
+    const signupBtn = navTools.querySelector('a[title="Signup"]');
+    const logoutBtn = navTools.querySelector('a[title="Logout"]');
+    console.log('navTools', navTools, 'loginBtn', loginBtn, 'signupBtn', signupBtn, 'logoutBtn', logoutBtn);
+    const user = localStorage.getItem('user');
+    if (user) {
+      if (loginBtn) { loginBtn.classList.add('hide'); loginBtn.classList.remove('show'); }
+      if (signupBtn) { signupBtn.classList.add('hide'); signupBtn.classList.remove('show'); }
+      if (logoutBtn) {
+        logoutBtn.classList.remove('hide');
+        logoutBtn.classList.add('show');
+        if (!logoutBtn.dataset.listener) {
+          logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('user');
+            window.location.reload();
+          });
+          logoutBtn.dataset.listener = 'true';
+        }
+      }
+    } else {
+      if (loginBtn) { loginBtn.classList.remove('hide'); loginBtn.classList.add('show'); }
+      if (signupBtn) { signupBtn.classList.remove('hide'); signupBtn.classList.add('show'); }
+      if (logoutBtn) { logoutBtn.classList.add('hide'); logoutBtn.classList.remove('show'); }
+    }
+  }
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';

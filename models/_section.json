@@ -53,7 +53,8 @@
         "columns",
         "fragment",
         "login",
-        "pinterest-masonry"
+        "pinterest-masonry",
+        "cards-carousel"
       ]
     }
   ]

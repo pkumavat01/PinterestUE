@@ -144,4 +144,58 @@ async function loadPage() {
   loadDelayed();
 }
 
+export function loginPage() {
+  const loginPage = document.body.classList.contains('login-page') ? document.body : document.querySelector('.login-page');
+  if (!loginPage) return;
+  const wrapper = loginPage.querySelector('.default-content-wrapper');
+  if (!wrapper) return;
+  const ps = wrapper.querySelectorAll('p');
+  ps.forEach((p) => {
+    if (/username/i.test(p.textContent)) {
+      const label = document.createElement('label');
+      label.textContent = 'Username';
+      label.setAttribute('for', 'login-username');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = 'login-username';
+      input.name = 'username';
+      input.autocomplete = 'username';
+      input.required = true;
+      p.replaceWith(label, input);
+    }
+    if (/password/i.test(p.textContent)) {
+      const label = document.createElement('label');
+      label.textContent = 'Password';
+      label.setAttribute('for', 'login-password');
+      const input = document.createElement('input');
+      input.type = 'password';
+      input.id = 'login-password';
+      input.name = 'password';
+      input.autocomplete = 'current-password';
+      input.required = true;
+      p.replaceWith(label, input);
+    }
+  });
+  const loginBtn = wrapper.querySelector('a.button, button.button');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const username = wrapper.querySelector('#login-username')?.value;
+      const password = wrapper.querySelector('#login-password')?.value;
+      if (username && password) {
+        localStorage.setItem('user', JSON.stringify({ username }));
+        window.location.href = '/ideas';
+      } else {
+        alert('Please enter both username and password.');
+      }
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.login-page')) {
+    loginPage();
+  }
+});
+
 loadPage();
