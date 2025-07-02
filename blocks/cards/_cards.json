@@ -38,7 +38,7 @@
         {
           "component": "select",
           "name": "classes",
-          "label": "Cards Layout",
+          "label": "Card Layout",
           "valueType": "string",
           "value": "",
           "options": [
