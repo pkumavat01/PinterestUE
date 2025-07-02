@@ -171,6 +171,20 @@
               }
             }
           }
+        },
+        {
+          "title": "Pinterest Masonry",
+          "id": "pinterest-masonry",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/pinterest-masonry/v1/pinterest-masonry",
+                "template": {
+                  "pinterest-masonry": "1"
+                }
+              }
+            }
+          }
         }
       ]
     }

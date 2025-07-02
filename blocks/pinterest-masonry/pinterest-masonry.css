@@ -1,0 +1,115 @@
+/* pinterest-masonry.css
+   Custom block for Pinterest-style masonry layout, mobile-first
+   Reference: .long class from cards
+*/
+
+.pinterest-masonry.long.block ul {
+  columns: 200px;
+  column-gap: 14px;
+  padding: 0;
+}
+
+.pinterest-masonry.long.block ul li {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  position: relative;
+  break-inside: avoid;
+}
+
+.pinterest-masonry.long.block ul li:hover {
+  transform: scale(1.02);
+}
+
+.pinterest-masonry.long.block .cards-card-image img {
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #eee;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.pinterest-masonry.long.block .cards-card-body :where(h5,h6,h4,p a) {
+  margin-top: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pinterest-masonry.long.block .button-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 5px;
+  position: relative;
+}
+
+.pinterest-masonry.long.block .button-carousel .button-container {
+  margin: 0.4rem 0 0;
+}
+
+.pinterest-masonry.long.block .cards-card-body p:first-of-type {
+  margin-top: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 18px;
+}
+
+.ideas-page .pinterest-masonry.long.block .cards-card-body p:nth-of-type(2) {
+  margin-top: 0;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.pinterest-masonry.long.block .cards-card-body p:last-of-type img,
+.pinterest-masonry.long.block .cards-card-body p:last-of-type picture {
+  width: 30px;
+  height: 30px;
+}
+
+.pinterest-masonry.long.block .button-carousel .button-container a {
+  margin: 0;
+  background-color: var(--overlay-background-color);
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.pinterest-masonry.long.block .button-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.pinterest-masonry.long.block .cards-card-image {
+  position: relative;
+}
+
+/* Responsive columns for mobile-first */
+@media (max-width: 599px) {
+  .pinterest-masonry.long.block ul {
+    columns: 1 !important;
+  }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .pinterest-masonry.long.block ul {
+    columns: 2 !important;
+  }
+}
+@media (min-width: 900px) {
+  .pinterest-masonry.long.block ul {
+    columns: 3 !important;
+  }
+}

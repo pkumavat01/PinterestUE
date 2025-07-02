@@ -283,5 +283,23 @@
         "value": "Login"
       }
     ]
+  },
+  {
+    "id": "pinterest-masonry",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Layout Style",
+        "valueType": "string",
+        "value": "long",
+        "options": [
+          {
+            "name": "Pinterest Masonry",
+            "value": "long"
+          }
+        ]
+      }
+    ]
   }
 ]

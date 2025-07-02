@@ -1,0 +1,52 @@
+{
+  "definitions": [
+    {
+      "title": "Pinterest Masonry",
+      "id": "pinterest-masonry",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/pinterest-masonry/v1/pinterest-masonry",
+            "template": {
+              "pinterest-masonry": "1"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "pinterest-masonry",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Layout Style",
+          "valueType": "string",
+          "value": "long",
+          "options": [
+            { "name": "Pinterest Masonry", "value": "long" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "pinterest-masonry",
+      "components": [
+        "card"
+      ]
+    },
+    {
+      "id": "card",
+      "components": [
+        "image",
+        "text",
+        "button",
+        "title"
+      ]
+    }
+  ]
+}
