@@ -188,15 +188,15 @@
           }
         },
         {
-          "title": "Card",
-          "id": "card",
+          "title": "Masonry Card",
+          "id": "masonry-card",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Card",
-                  "model": "card"
+                  "name": "Masonry Card",
+                  "model": "masonry-card"
                 }
               }
             }

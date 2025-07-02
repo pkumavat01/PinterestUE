@@ -16,15 +16,15 @@
       }
     },
     {
-      "title": "Card",
-      "id": "card",
+      "title": "Masonry Card",
+      "id": "masonry-card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Card",
-              "model": "card"
+              "name": "Masonry Card",
+              "model": "masonry-card"
             }
           }
         }
@@ -49,11 +49,11 @@
     {
       "id": "pinterest-masonry",
       "components": [
-        "card"
+        "masonry-card"
       ]
     },
     {
-      "id": "card",
+      "id": "masonry-card",
       "components": [
         "image",
         "text",
