@@ -4,7 +4,7 @@
 */
 
 .masonry.block ul {
-  columns: 2 !important;
+  columns: 1 !important;
   column-gap: 14px;
   padding:0;
 }
@@ -98,18 +98,15 @@
 }
 
 /* Responsive columns for mobile-first */
-@media (max-width: 599px) {
+@media (max-width: 600px) {
   .masonry.block ul {
     columns: 3 !important;
   }
 }
-@media (min-width: 600px) and (max-width: 899px) {
-  .masonry.block ul {
-    columns: 4 !important;
-  }
-}
-@media (min-width: 900px) {
+@media (max-width: 900px) {
   .masonry.block ul {
     columns: 5 !important;
   }
 }
+
+
