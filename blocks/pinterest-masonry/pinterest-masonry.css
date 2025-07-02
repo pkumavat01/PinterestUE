@@ -6,7 +6,7 @@
 .masonry.block ul {
   columns: 200px;
   column-gap: 14px;
-  padding: 0;
+  padding:0;
 }
 
 .masonry.block ul li {
@@ -110,6 +110,6 @@
 }
 @media (min-width: 900px) {
   .masonry.block ul {
-    columns: 3 !important;
+    columns: 5 !important;
   }
 }
