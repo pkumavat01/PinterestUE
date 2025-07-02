@@ -6,14 +6,20 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
+    let imageDiv = null;
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'cards-card-body';
+    // Group all non-image content into bodyDiv
+    [...row.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
-        div.className = 'cards-card-image';
+        imageDiv = div;
+        imageDiv.className = 'cards-card-image';
       } else {
-        div.className = 'cards-card-body';
+        bodyDiv.appendChild(div);
       }
     });
+    if (imageDiv) li.appendChild(imageDiv);
+    if (bodyDiv.childNodes.length) li.appendChild(bodyDiv);
     ul.append(li);
   });
 
