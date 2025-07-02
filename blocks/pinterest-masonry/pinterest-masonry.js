@@ -56,7 +56,7 @@ export default function decorate(block) {
             img.setAttribute('src', '/icons/heart.svg');
           }
         }
-        iconSpan.addEventListener('click', function () {
+        iconSpan.addEventListener('click', () => {
           if (iconSpan.classList.contains('icon-heart')) {
             iconSpan.classList.remove('icon-heart');
             iconSpan.classList.add('icon-heart-fill');
