@@ -362,7 +362,7 @@
       },
       {
         "component": "text",
-        "name": "text",
+        "name": "icon",
         "label": "Icon Name",
         "valueType": "string",
         "value": ":heart:",
