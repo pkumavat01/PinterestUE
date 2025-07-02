@@ -29,6 +29,23 @@ export default function decorate(block) {
     img.closest('picture').replaceWith(optimizedPic);
   });
 
+  // Toggle between :heart: and :heart-fill: on span click
+  ul.querySelectorAll('.cards-card-body span.icon').forEach((iconSpan) => {
+    iconSpan.style.cursor = 'pointer';
+    iconSpan.addEventListener('click', function () {
+      const img = iconSpan.querySelector('img');
+      if (iconSpan.classList.contains('icon-heart')) {
+        iconSpan.classList.remove('icon-heart');
+        iconSpan.classList.add('icon-heart-fill');
+        if (img) img.setAttribute('data-icon-name', 'heart-fill');
+      } else {
+        iconSpan.classList.remove('icon-heart-fill');
+        iconSpan.classList.add('icon-heart');
+        if (img) img.setAttribute('data-icon-name', 'heart');
+      }
+    });
+  });
+
   block.textContent = '';
   block.append(ul);
   block.classList.add('masonry', 'block');
