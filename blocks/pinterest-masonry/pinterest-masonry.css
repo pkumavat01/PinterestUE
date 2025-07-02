@@ -96,12 +96,7 @@
 .masonry.block .cards-card-image {
   position: relative;
 }
-
-.masonry .cards-card-body {
-  position: relative;
-}
-.masonry .cards-card-body .icon.icon-heart,
-.masonry .cards-card-body .icon.icon-heart-fill {
+.masonry .cards-card-image span {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -113,7 +108,10 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   transition: background 0.2s;
 }
-.masonry .cards-card-body .icon.icon-heart-fill {
+.masonry .cards-card-image span img{
+    width: 30px;
+}
+.masonry .cards-card-image .icon.icon-heart-fill {
   background: #fff0f3;
 }
 

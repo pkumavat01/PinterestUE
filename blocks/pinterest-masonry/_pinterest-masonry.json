@@ -76,13 +76,6 @@
           "valueType": "string",
           "value": ":heart:",
           "description": "Name of the icon to use for this card (e.g., 'heart', 'star', etc.)"
-        },
-        {
-          "component": "button",
-          "name": "favorite",
-          "label": "Favorite Button",
-          "text": "",
-          "valueType": "string"
         }
       ]
     }
