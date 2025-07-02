@@ -325,7 +325,7 @@
         "name": "icon",
         "label": "Icon Name",
         "valueType": "string",
-        "value": "heart",
+        "value": ":heart:",
         "description": "Name of the icon to use for this card (e.g., 'heart', 'star', etc.)"
       }
     ]
