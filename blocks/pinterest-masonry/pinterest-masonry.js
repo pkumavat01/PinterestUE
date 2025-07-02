@@ -24,17 +24,26 @@ export default function decorate(block) {
     if (imageDiv) li.appendChild(imageDiv);
     if (bodyDiv.childNodes.length) li.appendChild(bodyDiv);
 
-    // Directly access the icon span and toggle its class on click
+    // Directly access the icon span and toggle its class and the img src/data-icon-name on click
     const iconSpan = bodyDiv.querySelector('span.icon');
     if (iconSpan) {
       iconSpan.style.cursor = 'pointer';
       iconSpan.addEventListener('click', function () {
+        const img = iconSpan.querySelector('img');
         if (iconSpan.classList.contains('icon-heart')) {
           iconSpan.classList.remove('icon-heart');
           iconSpan.classList.add('icon-heart-fill');
+          if (img) {
+            img.setAttribute('data-icon-name', 'heart-fill');
+            img.setAttribute('src', '/icons/heart-fill.svg');
+          }
         } else {
           iconSpan.classList.remove('icon-heart-fill');
           iconSpan.classList.add('icon-heart');
+          if (img) {
+            img.setAttribute('data-icon-name', 'heart');
+            img.setAttribute('src', '/icons/heart.svg');
+          }
         }
       });
     }
