@@ -33,20 +33,6 @@
   ],
   "models": [
     {
-      "id": "carousel",
-      "fields": [
-        {
-          "component": "array",
-          "name": "carousel cards",
-          "label": "Carousel Cards",
-          "items": {
-            "type": "object",
-            "model": "carousel-card"
-          }
-        }
-      ]
-    },
-    {
       "id": "carousel-card",
       "fields": [
         {
