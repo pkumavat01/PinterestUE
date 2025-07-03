@@ -14,10 +14,4 @@ indices:
       description:
         select: head > meta[name="description"], head > meta[property="og:description"]
         value: attribute(el, "content")
-      lastModified:
-        select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
-      robots:
-        select: head > meta[name="robots"]
-        value: attribute(el, "content")
 
