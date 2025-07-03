@@ -258,3 +258,33 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+.login-page main > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: #fff;
+  padding: 2rem;
+}
+.login-page main > div > div {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  text-align: center;
+}
+.login-page main > div > div .login-page .default-content-wrapper input[type="text"],
+.login-page main > div > div .login-page .default-content-wrapper input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+

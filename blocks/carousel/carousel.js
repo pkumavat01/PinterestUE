@@ -3,6 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const ul = document.createElement('ul');
+
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
@@ -14,6 +15,7 @@ export default function decorate(block) {
         div.className = 'carousel-card-body';
       }
     });
+    li.classList.add('carousel-card');
     ul.append(li);
   });
 
@@ -23,6 +25,28 @@ export default function decorate(block) {
     img.closest('picture').replaceWith(optimizedPic);
   });
 
+  // Carousel controls
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = '‹';
+  prevBtn.className = 'carousel-prev';
+  prevBtn.setAttribute('aria-label', 'Previous');
+
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = '›';
+  nextBtn.className = 'carousel-next';
+  nextBtn.setAttribute('aria-label', 'Next');
+
+  let scrollAmount = 300;
+
+  prevBtn.addEventListener('click', () => {
+    ul.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    ul.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
   block.textContent = '';
-  block.append(ul);
+  block.append(prevBtn, ul, nextBtn);
+  block.classList.add('carousel', 'block');
 }

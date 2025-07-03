@@ -143,45 +143,54 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
-
 export function loginPage() {
   const loginPage = document.body.classList.contains('login-page') ? document.body : document.querySelector('.login-page');
   if (!loginPage) return;
+
   const wrapper = loginPage.querySelector('.default-content-wrapper');
   if (!wrapper) return;
+
   const ps = wrapper.querySelectorAll('p');
   ps.forEach((p) => {
     if (/username/i.test(p.textContent)) {
-      const label = document.createElement('label');
-      label.textContent = 'Username';
-      label.setAttribute('for', 'login-username');
+      const container = document.createElement('div');
+      container.classList.add('login-username-wrapper');
+
       const input = document.createElement('input');
       input.type = 'text';
       input.id = 'login-username';
       input.name = 'username';
       input.autocomplete = 'username';
       input.required = true;
-      p.replaceWith(label, input);
+
+      container.appendChild(p.cloneNode(true)); // keep the label text visually
+      container.appendChild(input);
+      wrapper.replaceChild(container, p);
     }
+
     if (/password/i.test(p.textContent)) {
-      const label = document.createElement('label');
-      label.textContent = 'Password';
-      label.setAttribute('for', 'login-password');
+      const container = document.createElement('div');
+      container.classList.add('login-password-wrapper');
+
       const input = document.createElement('input');
       input.type = 'password';
       input.id = 'login-password';
       input.name = 'password';
       input.autocomplete = 'current-password';
       input.required = true;
-      p.replaceWith(label, input);
+
+      container.appendChild(p.cloneNode(true));
+      container.appendChild(input);
+      wrapper.replaceChild(container, p);
     }
   });
+
   const loginBtn = wrapper.querySelector('a.button, button.button');
   if (loginBtn) {
     loginBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const username = wrapper.querySelector('#login-username')?.value;
-      const password = wrapper.querySelector('#login-password')?.value;
+      const username = wrapper.querySelector('#login-username')?.value.trim();
+      const password = wrapper.querySelector('#login-password')?.value.trim();
       if (username && password) {
         localStorage.setItem('user', JSON.stringify({ username }));
         window.location.href = '/ideas';

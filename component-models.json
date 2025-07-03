@@ -284,30 +284,6 @@
     ]
   },
   {
-    "id": "login",
-    "fields": [
-      {
-        "component": "text",
-        "name": "username",
-        "label": "Username",
-        "valueType": "string"
-      },
-      {
-        "component": "password",
-        "name": "password",
-        "label": "Password",
-        "valueType": "string"
-      },
-      {
-        "component": "button",
-        "name": "login",
-        "label": "Login",
-        "text": "Login",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "pinterest-masonry",
     "fields": [
       {
