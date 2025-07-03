@@ -11,7 +11,7 @@ function getCardDetails(imageUrl, bodyDiv) {
   return { id: imageUrl, title, description };
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const ul = document.createElement('ul');
 
   const currentUser = JSON.parse(localStorage.getItem('user'))?.username;
@@ -20,6 +20,86 @@ export default function decorate(block) {
   const userLikesKey = `likes-${currentUser}`;
   const likedItems = JSON.parse(localStorage.getItem(userLikesKey)) || [];
 
+  // ✅ CASE 1: Favorites Page → Load from localStorage JSON
+  if (document.body.classList.contains('favorites-page')) {
+    block.textContent = '';
+    block.appendChild(ul);
+    block.classList.add('masonry', 'block');
+
+    // If no favorites, show message
+    if (likedItems.length === 0) {
+      const msg = document.createElement('p');
+      msg.textContent = 'No pins found.';
+      msg.style.textAlign = 'center';
+      msg.style.padding = '40px';
+      msg.style.fontWeight = 'bold';
+      block.appendChild(msg);
+      return;
+    }
+
+    // Render liked cards
+    likedItems.forEach((item) => {
+      const li = document.createElement('li');
+
+      // Image block
+      const imgDiv = document.createElement('div');
+      imgDiv.className = 'cards-card-image';
+      const picture = createOptimizedPicture(item.id, item.title, false, [{ width: '750' }]);
+      imgDiv.appendChild(picture);
+
+      // Body block
+      const bodyDiv = document.createElement('div');
+      bodyDiv.className = 'cards-card-body';
+
+      const titleDiv = document.createElement('div');
+      const titleP = document.createElement('p');
+      titleP.textContent = item.title;
+      titleDiv.appendChild(titleP);
+
+      const descDiv = document.createElement('div');
+      const descP = document.createElement('p');
+      descP.textContent = item.description;
+      descDiv.appendChild(descP);
+
+      bodyDiv.appendChild(titleDiv);
+      bodyDiv.appendChild(descDiv);
+
+      // Heart icon
+      const heart = document.createElement('span');
+      heart.className = 'masonry-heart liked';
+      const heartImg = document.createElement('img');
+      heartImg.src = '/icons/heart-fill.svg';
+      heartImg.alt = 'Unfavorite';
+      heart.appendChild(heartImg);
+
+      heart.addEventListener('click', () => {
+        const index = likedItems.findIndex(like => like.id === item.id);
+        if (index !== -1) {
+          likedItems.splice(index, 1);
+          localStorage.setItem(userLikesKey, JSON.stringify(likedItems));
+          li.remove();
+          if (likedItems.length === 0) {
+            block.innerHTML = '';
+            const msg = document.createElement('p');
+            msg.textContent = 'No pins found.';
+            msg.style.textAlign = 'center';
+            msg.style.padding = '40px';
+            msg.style.fontWeight = 'bold';
+            block.appendChild(msg);
+          }
+        }
+      });
+
+      li.appendChild(heart);
+      li.appendChild(imgDiv);
+      li.appendChild(bodyDiv);
+      ul.appendChild(li);
+    });
+
+    return;
+  }
+
+  // ✅ CASE 2: Normal Page → Parse HTML block cards
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
@@ -40,14 +120,12 @@ export default function decorate(block) {
       }
     });
 
-    // Find and move the heart icon to the top right of the card (as a direct child of li)
     const likeDiv = bodyDiv.querySelector('.icon-heart');
     if (likeDiv) {
       likeDiv.classList.add('masonry-heart');
       likeDiv.style.cursor = '';
-      li.appendChild(likeDiv); // Move to li for absolute positioning
+      li.appendChild(likeDiv);
 
-      // Restore liked state
       if (isLiked(cardImageUrl, likedItems)) {
         likeDiv.classList.add('liked');
         likeDiv.querySelector('img').src = '/icons/heart-fill.svg';
@@ -73,7 +151,7 @@ export default function decorate(block) {
 
     if (imageDiv) li.appendChild(imageDiv);
     if (bodyDiv.childNodes.length) li.appendChild(bodyDiv);
-    ul.append(li);
+    ul.appendChild(li);
   });
 
   ul.querySelectorAll('picture > img').forEach((img) => {

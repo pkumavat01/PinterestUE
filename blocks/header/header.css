@@ -237,13 +237,22 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
-header nav .nav-tools .button-container:first-of-type strong a {
+header nav .nav-tools .button-container a {
+  background-color: var(--highlight-background-color);
+  color:var(--text-color);
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+header nav .nav-tools .button-container a.primary {
   background-color: red;
+  color:var(--background-color);
+} 
+header nav .nav-tools .button-container a.secondary {
+  background-color: transparent;
+  border:none;
 } 
 
-header nav .nav-tools .button-container:last-of-type strong a {
-  background-color: gray;
-}
 
 /* search */
 header nav .nav-search {

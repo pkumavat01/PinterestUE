@@ -164,7 +164,7 @@ export default async function decorate(block) {
     searchContainer.appendChild(dropdown);
 
     searchInput.addEventListener('focus', () => {
-      const cards = getAllCards(); // or use curated suggestions
+      const cards = getAllCards(); 
       dropdown.innerHTML = cards.slice(0, 5).map((card) => `
         <div class="search-dropdown-card" data-url="${card.url}">
           ${card.image ? `<img src="${card.image}" alt="" />` : ''}
@@ -196,7 +196,6 @@ export default async function decorate(block) {
       setTimeout(() => { dropdown.classList.remove('show'); }, 200); // allow click
     });
 
-    // Add click event to navigate
     dropdown.addEventListener('click', (e) => {
       const cardDiv = e.target.closest('.search-dropdown-card');
       if (cardDiv && cardDiv.dataset.url) {
@@ -229,7 +228,7 @@ export default async function decorate(block) {
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
-  // LOGIN/LOGOUT BUTTON LOGIC 
+  // login
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
     
