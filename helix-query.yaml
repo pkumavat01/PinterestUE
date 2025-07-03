@@ -6,7 +6,7 @@ indices:
       - '/**'
     exclude:
       - '/**.json'
-    target: /spreadsheet.html
+    target: /query-index.json
     properties:
       title:
         select: head > meta[name="title"], head > meta[property="og:title"]
