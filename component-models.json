@@ -149,37 +149,34 @@
     ]
   },
   {
-    "id": "cards-carousel",
+    "id": "carousel",
     "fields": [
       {
         "component": "array",
-        "name": "cards",
-        "label": "Cards",
+        "name": "carousel-cards",
+        "label": "Carousel Cards",
         "items": {
           "type": "object",
-          "fields": [
-            {
-              "component": "text",
-              "name": "title",
-              "label": "Title"
-            },
-            {
-              "component": "text",
-              "name": "image",
-              "label": "Image URL"
-            },
-            {
-              "component": "text",
-              "name": "description",
-              "label": "Description"
-            },
-            {
-              "component": "text",
-              "name": "url",
-              "label": "Link URL"
-            }
-          ]
+          "model": "carousel-card"
         }
+      }
+    ]
+  },
+  {
+    "id": "carousel-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
       }
     ]
   },

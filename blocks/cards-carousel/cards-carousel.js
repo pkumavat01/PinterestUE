@@ -1,7 +1,5 @@
 export default function decorate(block) {
   block.classList.add('cards-carousel');
-
-  // Build carousel structure
   const cards = Array.from(block.children[0]?.children || []);
   const track = document.createElement('div');
   track.className = 'cards-carousel-track';
