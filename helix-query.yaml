@@ -1,11 +1,11 @@
 version: 1
 
 indices:
-  pages:
+  punam-ue:
     include:
-      - '/**'
+      - ['**']
     exclude:
-      - '/**.json'
+      - []
     target: /query-index.json
     properties:
       title:
