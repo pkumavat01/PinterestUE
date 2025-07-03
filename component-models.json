@@ -328,5 +328,37 @@
         "description": "Name of the icon to use for this card (e.g., 'heart', 'star', etc.)"
       }
     ]
+  },
+  {
+    "id": "small-cards",
+    "fields": [
+      {
+        "component": "array",
+        "name": "cards",
+        "label": "Small Cards",
+        "items": {
+          "type": "object",
+          "model": "small-card"
+        }
+      }
+    ]
+  },
+  {
+    "id": "small-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string"
+      }
+    ]
   }
 ]
