@@ -24,40 +24,13 @@
   background-color: var(--background-color);
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex: 0 0 auto;
   cursor: pointer;
 }
 
-/* Big Card */
-.cards > ul > li.big-card {
-  width: 390px;
-  height: 290px;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
-}
-
-.cards > ul > li.big-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 20%);
-}
-
-/* Small Card */
-.cards > ul > li.small-card {
-  width: 230px;
-  height: 130px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
-}
-
-.cards > ul > li.small-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
-}
-
-/* Card image */
 .cards .cards-card-image {
   line-height: 0;
 }
@@ -82,7 +55,6 @@
   left: 0;
   right: 0;
   padding: 24px;
-  background: linear-gradient(to top, rgb(0 0 0 / 60%), rgb(0 0 0 / 0%));
   color: white;
   display: flex;
   flex-direction: column;
@@ -150,27 +122,6 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* Optional: Overlay (like button etc.) */
-.cards .like-overlay {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgb(255 255 255 / 90%);
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  opacity: 0;
-}
-
-.like-overlay:hover {
-  transform: scale(1.1);
 }
 
 .cards-card-image:hover .like-overlay {

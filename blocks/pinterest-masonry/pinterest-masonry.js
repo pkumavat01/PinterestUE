@@ -40,9 +40,12 @@ export default function decorate(block) {
       }
     });
 
+    // Find and move the heart icon to the top right of the card (as a direct child of li)
     const likeDiv = bodyDiv.querySelector('.icon-heart');
     if (likeDiv) {
-      likeDiv.style.cursor = 'pointer';
+      likeDiv.classList.add('masonry-heart');
+      likeDiv.style.cursor = '';
+      li.appendChild(likeDiv); // Move to li for absolute positioning
 
       // Restore liked state
       if (isLiked(cardImageUrl, likedItems)) {

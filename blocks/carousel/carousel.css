@@ -2,33 +2,21 @@
   overflow-x: auto;
   display: flex;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-}
-
-.carousel.block ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 1rem;
 }
 
 .carousel.block ul li {
   display: flex;
   align-items: center;
   background-color: var(--card-bg, #f8f8f8);
-  border-radius: 999px;
+  border-radius: 12px;
   overflow: hidden;
   scroll-snap-align: start;
   min-width: max-content;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-}
-
-.carousel.block ul li:hover {
-  transform: scale(1.03);
+  height: 50px;
 }
 
 .carousel.block .carousel-card-image {
@@ -48,8 +36,6 @@
 
 .carousel.block .carousel-card-body {
   padding: 0 1rem;
-  background-color: #fff;
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,9 +61,10 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   list-style: none;
-  padding: 0;
+  padding: 0 3rem;
   margin: 0;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
+
 }
 
 .carousel.block ul::-webkit-scrollbar {
@@ -91,10 +78,6 @@
   border-radius: 12px;
   background: #f9f9f9;
   transition: transform 0.3s;
-}
-
-.carousel-card:hover {
-  transform: scale(1.03);
 }
 
 .carousel-card-image img {
@@ -117,10 +100,10 @@
   top: 50%;
   transform: translateY(-50%);
   width: 44px;
-  height: 44px;
+  height: 56px;
   background: #f9f9f6;
   border: none;
-  border-radius: 12px;
+  border-radius: 20px;
   font-size: 28px;
   font-weight: bold;
   color: #000;
@@ -140,8 +123,10 @@
 
 .carousel-prev {
   left: 10px;
+  margin: auto;
 }
 
 .carousel-next {
   right: 10px;
+  margin: auto;
 }
