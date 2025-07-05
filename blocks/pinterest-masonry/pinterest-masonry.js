@@ -11,95 +11,81 @@ function getCardDetails(imageUrl, bodyDiv) {
   return { id: imageUrl, title, description };
 }
 
-export default async function decorate(block) {
+function renderFavorites(block, likedItems, userLikesKey) {
   const ul = document.createElement('ul');
+  block.textContent = '';
+  block.appendChild(ul);
+  block.classList.add('masonry', 'block');
 
-  const currentUser = JSON.parse(localStorage.getItem('user'))?.username;
-  if (!currentUser) return;
-
-  const userLikesKey = `likes-${currentUser}`;
-  const likedItems = JSON.parse(localStorage.getItem(userLikesKey)) || [];
-
-  // ✅ CASE 1: Favorites Page → Load from localStorage JSON
-  if (document.body.classList.contains('favorites-page')) {
-    block.textContent = '';
-    block.appendChild(ul);
-    block.classList.add('masonry', 'block');
-
-    // If no favorites, show message
-    if (likedItems.length === 0) {
-      const msg = document.createElement('p');
-      msg.textContent = 'No pins found.';
-      msg.style.textAlign = 'center';
-      msg.style.padding = '40px';
-      msg.style.fontWeight = 'bold';
-      block.appendChild(msg);
-      return;
-    }
-
-    // Render liked cards
-    likedItems.forEach((item) => {
-      const li = document.createElement('li');
-
-      // Image block
-      const imgDiv = document.createElement('div');
-      imgDiv.className = 'cards-card-image';
-      const picture = createOptimizedPicture(item.id, item.title, false, [{ width: '750' }]);
-      imgDiv.appendChild(picture);
-
-      // Body block
-      const bodyDiv = document.createElement('div');
-      bodyDiv.className = 'cards-card-body';
-
-      const titleDiv = document.createElement('div');
-      const titleP = document.createElement('p');
-      titleP.textContent = item.title;
-      titleDiv.appendChild(titleP);
-
-      const descDiv = document.createElement('div');
-      const descP = document.createElement('p');
-      descP.textContent = item.description;
-      descDiv.appendChild(descP);
-
-      bodyDiv.appendChild(titleDiv);
-      bodyDiv.appendChild(descDiv);
-
-      // Heart icon
-      const heart = document.createElement('span');
-      heart.className = 'masonry-heart liked';
-      const heartImg = document.createElement('img');
-      heartImg.src = '/icons/heart-fill.svg';
-      heartImg.alt = 'Unfavorite';
-      heart.appendChild(heartImg);
-
-      heart.addEventListener('click', () => {
-        const index = likedItems.findIndex(like => like.id === item.id);
-        if (index !== -1) {
-          likedItems.splice(index, 1);
-          localStorage.setItem(userLikesKey, JSON.stringify(likedItems));
-          li.remove();
-          if (likedItems.length === 0) {
-            block.innerHTML = '';
-            const msg = document.createElement('p');
-            msg.textContent = 'No pins found.';
-            msg.style.textAlign = 'center';
-            msg.style.padding = '40px';
-            msg.style.fontWeight = 'bold';
-            block.appendChild(msg);
-          }
-        }
-      });
-
-      li.appendChild(heart);
-      li.appendChild(imgDiv);
-      li.appendChild(bodyDiv);
-      ul.appendChild(li);
-    });
-
+  if (likedItems.length === 0) {
+    const msg = document.createElement('p');
+    msg.textContent = 'No pins found.';
+    msg.style.textAlign = 'center';
+    msg.style.padding = '40px';
+    msg.style.fontWeight = 'bold';
+    block.appendChild(msg);
     return;
   }
 
-  // ✅ CASE 2: Normal Page → Parse HTML block cards
+  likedItems.forEach((item) => {
+    const li = document.createElement('li');
+
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'cards-card-image';
+    const picture = createOptimizedPicture(item.id, item.title, false, [{ width: '750' }]);
+    imgDiv.appendChild(picture);
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'cards-card-body';
+
+    const titleDiv = document.createElement('div');
+    const titleP = document.createElement('p');
+    titleP.textContent = item.title;
+    titleDiv.appendChild(titleP);
+
+    const descDiv = document.createElement('div');
+    const descP = document.createElement('p');
+    descP.textContent = item.description;
+    descDiv.appendChild(descP);
+
+    bodyDiv.appendChild(titleDiv);
+    bodyDiv.appendChild(descDiv);
+
+    const heart = document.createElement('span');
+    heart.className = 'masonry-heart liked';
+    const heartImg = document.createElement('img');
+    heartImg.src = '/icons/heart-fill.svg';
+    heartImg.alt = 'Unfavorite';
+    heart.appendChild(heartImg);
+
+    heart.addEventListener('click', () => {
+      const index = likedItems.findIndex(like => like.id === item.id);
+      if (index !== -1) {
+        likedItems.splice(index, 1);
+        localStorage.setItem(userLikesKey, JSON.stringify(likedItems));
+        li.remove();
+        if (likedItems.length === 0) {
+          block.innerHTML = '';
+          const msg = document.createElement('p');
+          msg.textContent = 'No pins found.';
+          msg.style.textAlign = 'center';
+          msg.style.padding = '40px';
+          msg.style.fontWeight = 'bold';
+          block.appendChild(msg);
+        }
+      }
+    });
+
+    li.appendChild(heart);
+    li.appendChild(imgDiv);
+    li.appendChild(bodyDiv);
+    ul.appendChild(li);
+  });
+}
+
+function renderMasonry(block, likedItems, userLikesKey) {
+  const ul = document.createElement('ul');
+
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
@@ -123,7 +109,7 @@ export default async function decorate(block) {
     const likeDiv = bodyDiv.querySelector('.icon-heart');
     if (likeDiv) {
       likeDiv.classList.add('masonry-heart');
-      likeDiv.style.cursor = '';
+      likeDiv.style.cursor = 'pointer';
       li.appendChild(likeDiv);
 
       if (isLiked(cardImageUrl, likedItems)) {
@@ -163,4 +149,18 @@ export default async function decorate(block) {
   block.textContent = '';
   block.append(ul);
   block.classList.add('masonry', 'block');
+}
+
+export default async function decorate(block) {
+  const currentUser = JSON.parse(localStorage.getItem('user'))?.username;
+  if (!currentUser) return;
+
+  const userLikesKey = `likes-${currentUser}`;
+  const likedItems = JSON.parse(localStorage.getItem(userLikesKey)) || [];
+
+  if (document.body.classList.contains('favorites-page')) {
+    renderFavorites(block, likedItems, userLikesKey);
+  } else {
+    renderMasonry(block, likedItems, userLikesKey);
+  }
 }
