@@ -12,7 +12,6 @@
 .masonry.block ul li {
   display: inline-block;
   width: 100%;
-  margin: 0 0 20px;
   border-radius: 8px;
   transition: transform 0.2s;
   position: relative;
@@ -35,38 +34,43 @@
   object-fit: cover;
 }
 
-.masonry.block .cards-card-body :where(h5,h6,h4,p a) {
-  margin-top: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.masonry.block .cards-card-body div:first-of-type :where(h1, h2, h3, h4, h5, h6, p) {
+    font-size: 14px; /* same as h5 */
+    font-weight: 600;
+    margin-top: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
 }
-
+.masonry.block .cards-card-body div:nth-of-type(2) :where(h1, h2, h3, h4, h5, h6, p) {
+    font-size: 14px; 
+    margin-top: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
+}
 .masonry.block .button-carousel {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 5px;
+  gap: 8px;
   position: relative;
+  margin: 0.5rem 0 0.5rem 0;
+  padding-bottom: 0.5rem;
 }
 
 .masonry.block .button-carousel .button-container {
-  margin: 0.4rem 0 0;
+  margin: 0;
 }
 
-.masonry.block .cards-card-body p:first-of-type {
-  margin-top: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 18px;
-}
 
 .ideas-page .masonry.block .cards-card-body p:nth-of-type(2) {
   margin-top: 0;
@@ -88,9 +92,20 @@
 
 .masonry.block .button-carousel .button-container a {
   margin: 0;
-  background-color: var(--overlay-background-color);
-  color: var(--text-color);
+  background-color: var(--overlay-background-color, #fff);
+  color: var(--text-color, #333);
   font-weight: bold;
+  border-radius: 20px;
+  padding: 0.3em 1em;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.masonry.block .button-carousel .button-container a:hover {
+  background: #eee;
+  color: #000;
 }
 
 .masonry.block .button-carousel::-webkit-scrollbar {
@@ -116,11 +131,6 @@
 
 .masonry .cards-card-image .icon.icon-heart-fill {
   background: #fff0f3;
-}
-
-.masonry .cards-card-body div:first-of-type p{
-    padding:10px 0;
-    font-weight: 600;
 }
 
 .masonry.block .masonry-heart {
