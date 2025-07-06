@@ -142,7 +142,8 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-}export function loginPage() {
+}
+export function loginPage() {
   const loginPage = document.body.classList.contains('login-page') ? document.body : document.querySelector('.login-page');
   if (!loginPage) return;
 
@@ -192,7 +193,7 @@ async function loadPage() {
       const password = wrapper.querySelector('#login-password')?.value.trim();
       if (username && password) {
         localStorage.setItem('user', JSON.stringify({ username }));
-        window.location.href = '/ideas'; // Redirect to trigger masonry again
+        window.location.href = '/ideas'; 
       } else {
         alert('Please enter both username and password.');
       }

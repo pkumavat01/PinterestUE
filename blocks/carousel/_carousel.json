@@ -47,6 +47,12 @@
           "name": "title",
           "label": "Title",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "color",
+          "label": "Background Color (Hex or CSS)",
+          "valueType": "string"
         }
       ]
     }

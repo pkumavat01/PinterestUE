@@ -15,6 +15,12 @@ export default function decorate(block) {
         div.className = 'carousel-card-body';
       }
     });
+    // Set background color if color field is present
+    const colorDiv = li.querySelector('.carousel-card-body div[data-name="color"], .carousel-card-body p[data-name="color"]');
+    if (colorDiv && colorDiv.textContent) {
+      li.style.backgroundColor = colorDiv.textContent.trim();
+      colorDiv.style.display = 'none';
+    }
     li.classList.add('carousel-card');
     ul.append(li);
   });

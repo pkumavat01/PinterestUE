@@ -163,32 +163,49 @@ export default async function decorate(block) {
     dropdown.style.display = 'none';
     searchContainer.appendChild(dropdown);
 
-    searchInput.addEventListener('focus', () => {
-      const cards = getAllCards(); 
-      dropdown.innerHTML = cards.slice(0, 5).map((card) => `
-        <div class="search-dropdown-card" data-url="${card.url}">
-          ${card.image ? `<img src="${card.image}" alt="" />` : ''}
-
-          <span>${card.title}</span>
-        </div>
-      `).join('');
-      dropdown.classList.add('show');
-    });
-
-    searchInput.addEventListener('input', (e) => {
-      const value = e.target.value.toLowerCase();
-      const cards = getAllCards().filter((card) => card.title.toLowerCase().includes(value));
-      dropdown.innerHTML = cards.slice(0, 5).map((card) => `
-        <div class="search-dropdown-card" data-url="${card.url}">
-          ${card.image ? `<img src="${card.image}" alt="" />` : ''}
-
-          <span>${card.title}</span>
-        </div>
-      `).join('');
-      if (cards.length) {
+    // Instead of using the hidden button, fetch the NTM (query-index.json) and fill dropdown options
+    async function fillDropdownFromNTM() {
+      try {
+        const res = await fetch('/query-index.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        // Filter only items with path starting with /search/
+        const items = (data.data || []).filter(item => item.path && item.path.startsWith('/search/'));
+        dropdown.innerHTML = items.slice(0, 10).map((item) => `
+          <div class="search-dropdown-card" data-url="${item.path}">
+            <span>${item.title || item.path}</span>
+          </div>
+        `).join('');
         dropdown.classList.add('show');
-      } else {
-        dropdown.classList.remove('show');
+      } catch (e) {
+        dropdown.innerHTML = '<div class="search-dropdown-card">No results</div>';
+        dropdown.classList.add('show');
+      }
+    }
+    // Fill dropdown on focus
+    searchInput.addEventListener('focus', fillDropdownFromNTM);
+    // Optionally, filter as user types
+    searchInput.addEventListener('input', async (e) => {
+      const value = e.target.value.toLowerCase();
+      try {
+        const res = await fetch('/query-index.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        // Filter only items with path starting with /search/ and matching input
+        const items = (data.data || []).filter((item) => (item.path && item.path.startsWith('/search/')) && (item.title || item.path).toLowerCase().includes(value));
+        dropdown.innerHTML = items.slice(0, 10).map((item) => `
+          <div class="search-dropdown-card" data-url="${item.path}">
+            <span>${item.title || item.path}</span>
+          </div>
+        `).join('');
+        if (items.length) {
+          dropdown.classList.add('show');
+        } else {
+          dropdown.classList.remove('show');
+        }
+      } catch (e) {
+        dropdown.innerHTML = '<div class="search-dropdown-card">No results</div>';
+        dropdown.classList.add('show');
       }
     });
 
@@ -213,6 +230,12 @@ export default async function decorate(block) {
         }
       });
     });
+  }
+
+  // Hide button-container inside nav-sections
+  if (navSections) {
+    const buttonContainers = navSections.querySelectorAll('.button-container');
+    buttonContainers.forEach((btn) => btn.style.display = 'none');
   }
 
   // hamburger for mobile
