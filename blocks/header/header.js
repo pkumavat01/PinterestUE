@@ -164,6 +164,7 @@ export default async function decorate(block) {
     searchContainer.appendChild(dropdown);
 
     // Instead of using the hidden button, fetch the NTM (query-index.json) and fill dropdown options
+    
     async function fillDropdownFromNTM() {
       try {
         const res = await fetch('/query-index.json');
