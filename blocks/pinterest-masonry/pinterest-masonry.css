@@ -61,7 +61,7 @@
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 10px;
+  gap: 5px;
   position: relative;
   padding: 8px 0;
   margin: 0 8px;
@@ -75,7 +75,7 @@
 .carousel-link {
   background: #e5e5df;
   color: #111;
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 6px 16px;
   text-decoration: none;
   font-weight: 500;
@@ -84,6 +84,8 @@
   display: inline-block;
   transition: background 0.2s;
   box-shadow: none;
+  font-size: 12px;
+  text-decoration: none;
 }
 
 .carousel-link:hover {
@@ -165,6 +167,24 @@
 .masonry.block .masonry-heart img {
   width: 18px;
   height: 18px;
+}
+
+.carousel-tag {
+  background: #e5e5df;
+  color: #111;
+  border-radius: 999px;
+  padding: 6px 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  border: none;
+  margin: 0;
+  transition: background 0.2s;
+}
+.carousel-tag:hover {
+  background: #e0e0db;
 }
 
 /* Responsive columns for mobile-first */

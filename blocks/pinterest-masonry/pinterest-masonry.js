@@ -95,10 +95,10 @@ function renderMasonry(block, likedItems, userLikesKey) {
     const bodyDiv = document.createElement('div');
     bodyDiv.className = 'cards-card-body';
 
-    // Carousel links extraction
-    let links = [];
+    // Collect all <a> tags in the row for the carousel
+    const allAnchors = row.querySelectorAll('a');
+    const links = Array.from(allAnchors);
     let linksFromJson = null;
-    // Try to get links from data attribute if present
     if (row.dataset && row.dataset.links) {
       try {
         linksFromJson = JSON.parse(row.dataset.links);
@@ -112,10 +112,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
         const img = div.querySelector('img');
         if (img) cardImageUrl = img.src;
       } else {
-        // Extract <a> elements for carousel
-        const anchors = div.querySelectorAll('a');
-        anchors.forEach(a => links.push(a));
-        // Remove links from bodyDiv, will be added to carousel
+        // Remove all <a> tags from the clone before appending to bodyDiv
         const divClone = div.cloneNode(true);
         divClone.querySelectorAll('a').forEach(a => a.remove());
         bodyDiv.appendChild(divClone);
@@ -123,8 +120,9 @@ function renderMasonry(block, likedItems, userLikesKey) {
     });
 
     // Prefer links from JSON if available
+    let finalLinks = links;
     if (Array.isArray(linksFromJson) && linksFromJson.length > 0) {
-      links = linksFromJson.map(linkObj => {
+      finalLinks = linksFromJson.map(linkObj => {
         const a = document.createElement('a');
         a.href = linkObj.url;
         a.textContent = linkObj.text;
@@ -135,10 +133,10 @@ function renderMasonry(block, likedItems, userLikesKey) {
 
     // Create carousel if links exist, or add dummy links if none
     let carouselDiv = null;
-    if (links.length > 0) {
+    if (finalLinks.length > 0) {
       carouselDiv = document.createElement('div');
       carouselDiv.className = 'button-carousel';
-      links.forEach(link => {
+      finalLinks.forEach(link => {
         link.classList.add('carousel-link');
         carouselDiv.appendChild(link);
       });
@@ -146,7 +144,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
       // Add dummy links for demo
       carouselDiv = document.createElement('div');
       carouselDiv.className = 'button-carousel';
-      for (let i = 1; i <= 3; i++) {
+      for (let i = 1; i <= 5; i++) {
         const dummyLink = document.createElement('a');
         dummyLink.href = '#';
         dummyLink.textContent = `Link ${i}`;
