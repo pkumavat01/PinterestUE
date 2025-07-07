@@ -9,6 +9,7 @@
 }
 
 .cards > ul > li {
+  
   background-color: var(--background-color);
   position: relative;
   overflow: hidden;
