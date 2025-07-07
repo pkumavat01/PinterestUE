@@ -95,6 +95,16 @@ function renderMasonry(block, likedItems, userLikesKey) {
     const bodyDiv = document.createElement('div');
     bodyDiv.className = 'cards-card-body';
 
+    // Carousel links extraction
+    let links = [];
+    let linksFromJson = null;
+    // Try to get links from data attribute if present
+    if (row.dataset && row.dataset.links) {
+      try {
+        linksFromJson = JSON.parse(row.dataset.links);
+      } catch (e) { /* ignore */ }
+    }
+
     [...row.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
         imageDiv = div;
@@ -102,9 +112,48 @@ function renderMasonry(block, likedItems, userLikesKey) {
         const img = div.querySelector('img');
         if (img) cardImageUrl = img.src;
       } else {
-        bodyDiv.appendChild(div);
+        // Extract <a> elements for carousel
+        const anchors = div.querySelectorAll('a');
+        anchors.forEach(a => links.push(a));
+        // Remove links from bodyDiv, will be added to carousel
+        const divClone = div.cloneNode(true);
+        divClone.querySelectorAll('a').forEach(a => a.remove());
+        bodyDiv.appendChild(divClone);
       }
     });
+
+    // Prefer links from JSON if available
+    if (Array.isArray(linksFromJson) && linksFromJson.length > 0) {
+      links = linksFromJson.map(linkObj => {
+        const a = document.createElement('a');
+        a.href = linkObj.url;
+        a.textContent = linkObj.text;
+        a.className = 'carousel-link';
+        return a;
+      });
+    }
+
+    // Create carousel if links exist, or add dummy links if none
+    let carouselDiv = null;
+    if (links.length > 0) {
+      carouselDiv = document.createElement('div');
+      carouselDiv.className = 'button-carousel';
+      links.forEach(link => {
+        link.classList.add('carousel-link');
+        carouselDiv.appendChild(link);
+      });
+    } else {
+      // Add dummy links for demo
+      carouselDiv = document.createElement('div');
+      carouselDiv.className = 'button-carousel';
+      for (let i = 1; i <= 3; i++) {
+        const dummyLink = document.createElement('a');
+        dummyLink.href = '#';
+        dummyLink.textContent = `Link ${i}`;
+        dummyLink.className = 'carousel-link';
+        carouselDiv.appendChild(dummyLink);
+      }
+    }
 
     const likeDiv = bodyDiv.querySelector('.icon-heart');
     if (likeDiv) {
@@ -118,6 +167,11 @@ function renderMasonry(block, likedItems, userLikesKey) {
       }
 
       likeDiv.addEventListener('click', () => {
+        const currentUser = JSON.parse(localStorage.getItem('user'))?.username;
+        if (!currentUser) {
+          alert('You must be logged in to like a pin!');
+          return;
+        }
         const isNowLiked = likeDiv.classList.toggle('liked');
         const iconImg = likeDiv.querySelector('img');
 
@@ -136,6 +190,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
     }
 
     if (imageDiv) li.appendChild(imageDiv);
+    if (carouselDiv) li.appendChild(carouselDiv);
     if (bodyDiv.childNodes.length) li.appendChild(bodyDiv);
     ul.appendChild(li);
   });
@@ -153,11 +208,15 @@ function renderMasonry(block, likedItems, userLikesKey) {
 
 export default async function decorate(block) {
   const currentUser = JSON.parse(localStorage.getItem('user'))?.username;
-  if (!currentUser) return;
+  let likedItems = [];
+  let userLikesKey = '';
 
-  const userLikesKey = `likes-${currentUser}`;
-  const likedItems = JSON.parse(localStorage.getItem(userLikesKey)) || [];
+  if (currentUser) {
+    userLikesKey = `likes-${currentUser}`;
+    likedItems = JSON.parse(localStorage.getItem(userLikesKey)) || [];
+  }
 
+  // Always render the masonry layout, even for guests
   if (document.body.classList.contains('favorites-page')) {
     renderFavorites(block, likedItems, userLikesKey);
   } else {

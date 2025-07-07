@@ -27,12 +27,6 @@
         "name": "template",
         "label": "Template Name",
         "description": "The name of the template used for this page (for metadata or analytics)"
-      },
-      {
-        "component": "reference",
-        "name": "image",
-        "label": "Image",
-        "multi": false
       }
     ]
   },
@@ -338,6 +332,26 @@
         "valueType": "string",
         "value": ":heart:",
         "description": "Name of the icon to use for this card (e.g., 'heart', 'star', etc.)"
+      },
+      {
+        "component": "array",
+        "name": "links",
+        "label": "Links",
+        "items": {
+          "type": "object",
+          "fields": [
+            {
+              "component": "text",
+              "name": "text",
+              "label": "Link Text"
+            },
+            {
+              "component": "text",
+              "name": "url",
+              "label": "Link URL"
+            }
+          ]
+        }
       }
     ]
   },

@@ -61,16 +61,34 @@
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 8px;
+  gap: 10px;
   position: relative;
-  margin: 0.5rem 0 0.5rem 0;
-  padding-bottom: 0.5rem;
+  padding: 8px 0;
+  margin: 0 8px;
+  scrollbar-width: none; /* Firefox */
 }
 
-.masonry.block .button-carousel .button-container {
-  margin: 0;
+.masonry.block .button-carousel::-webkit-scrollbar {
+  display: none;
 }
 
+.carousel-link {
+  background: #e5e5df;
+  color: #111;
+  border-radius: 12px;
+  padding: 6px 16px;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  border: none;
+  display: inline-block;
+  transition: background 0.2s;
+  box-shadow: none;
+}
+
+.carousel-link:hover {
+  background: #e0e0db;
+}
 
 .ideas-page .masonry.block .cards-card-body p:nth-of-type(2) {
   margin-top: 0;
@@ -92,20 +110,9 @@
 
 .masonry.block .button-carousel .button-container a {
   margin: 0;
-  background-color: var(--overlay-background-color, #fff);
-  color: var(--text-color, #333);
+  background-color: var(--overlay-background-color);
+  color: var(--text-color);
   font-weight: bold;
-  border-radius: 20px;
-  padding: 0.3em 1em;
-  white-space: nowrap;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  border: none;
-  transition: background 0.2s, color 0.2s;
-}
-
-.masonry.block .button-carousel .button-container a:hover {
-  background: #eee;
-  color: #000;
 }
 
 .masonry.block .button-carousel::-webkit-scrollbar {
