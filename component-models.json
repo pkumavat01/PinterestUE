@@ -334,24 +334,11 @@
         "description": "Name of the icon to use for this card (e.g., 'heart', 'star', etc.)"
       },
       {
-        "component": "array",
-        "name": "links",
-        "label": "Links",
-        "items": {
-          "type": "object",
-          "fields": [
-            {
-              "component": "text",
-              "name": "text",
-              "label": "Link Text"
-            },
-            {
-              "component": "text",
-              "name": "url",
-              "label": "Link URL"
-            }
-          ]
-        }
+        "component": "text",
+        "name": "tags",
+        "label": "Tags",
+        "valueType": "string",
+        "multi": true
       }
     ]
   },
