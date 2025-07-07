@@ -164,7 +164,7 @@ export default async function decorate(block) {
     searchContainer.appendChild(dropdown);
 
     // Instead of using the hidden button, fetch the NTM (query-index.json) and fill dropdown options
-    
+
     async function fillDropdownFromNTM() {
       try {
         const res = await fetch('/query-index.json');
@@ -196,9 +196,11 @@ export default async function decorate(block) {
         const items = (data.data || []).filter((item) => (item.path && item.path.startsWith('/search/')) && (item.title || item.path).toLowerCase().includes(value));
         dropdown.innerHTML = items.slice(0, 10).map((item) => `
           <div class="search-dropdown-card" data-url="${item.path}">
+            <img src="${item.image || '/fallback.png'}" alt="${item.title || 'Card'}">
             <span>${item.title || item.path}</span>
           </div>
         `).join('');
+
         if (items.length) {
           dropdown.classList.add('show');
         } else {
@@ -255,7 +257,7 @@ export default async function decorate(block) {
   // login
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
-    
+
     const loginBtn = navTools.querySelector('a[title="Login"]');
     const signupBtn = navTools.querySelector('a[title="Signup"]');
     const logoutBtn = navTools.querySelector('a[title="Logout"]');
