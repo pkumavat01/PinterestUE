@@ -174,6 +174,7 @@ export default async function decorate(block) {
         const items = (data.data || []).filter(item => item.path && item.path.startsWith('/search/'));
         dropdown.innerHTML = items.slice(0, 10).map((item) => `
           <div class="search-dropdown-card" data-url="${item.path}">
+            <img src="${item.image || '/fallback.png'}" alt="${item.title || 'Card'}">
             <span>${item.title || item.path}</span>
           </div>
         `).join('');
@@ -186,35 +187,6 @@ export default async function decorate(block) {
     // Fill dropdown on focus
     searchInput.addEventListener('focus', fillDropdownFromNTM);
     // Optionally, filter as user types
-    searchInput.addEventListener('input', async (e) => {
-      const value = e.target.value.toLowerCase();
-      try {
-        const res = await fetch('/query-index.json');
-        if (!res.ok) return;
-        const data = await res.json();
-        // Filter only items with path starting with /search/ and matching input
-        const items = (data.data || []).filter((item) => (item.path && item.path.startsWith('/search/')) && (item.title || item.path).toLowerCase().includes(value));
-        dropdown.innerHTML = items.slice(0, 10).map((item) => `
-          <div class="search-dropdown-card" data-url="${item.path}">
-            <img src="${item.image || '/fallback.png'}" alt="${item.title || 'Card'}">
-            <span>${item.title || item.path}</span>
-          </div>
-        `).join('');
-
-        if (items.length) {
-          dropdown.classList.add('show');
-        } else {
-          dropdown.classList.remove('show');
-        }
-      } catch (e) {
-        dropdown.innerHTML = '<div class="search-dropdown-card">No results</div>';
-        dropdown.classList.add('show');
-      }
-    });
-
-    searchInput.addEventListener('blur', () => {
-      setTimeout(() => { dropdown.classList.remove('show'); }, 200); // allow click
-    });
 
     dropdown.addEventListener('click', (e) => {
       const cardDiv = e.target.closest('.search-dropdown-card');
