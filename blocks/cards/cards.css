@@ -2,22 +2,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
   justify-content: flex-start;
-}
-
-@media (width >= 601px) {
-  .cards > ul {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (width >= 901px) {
-  .cards > ul {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 .cards > ul > li {
@@ -29,8 +17,21 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex: 0 0 auto;
   cursor: pointer;
+  width: 390px;
 }
 
+@media (max-width: 600px) {
+  .cards > ul > li {
+    
+  width: 390px;
+  }
+}
+@media (max-width: 900px) {
+  .cards > ul > li {
+    
+  width: 390px;
+  }
+}
 .cards .cards-card-image {
   line-height: 0;
 }
@@ -126,6 +127,51 @@
 
 .cards-card-image:hover .like-overlay {
   opacity: 1;
+}
+
+/* See More Button Styles */
+.cards-container .button-container{
+  text-align: center;
+}
+.cards-container .button-container a{
+  background-color: var(--highlight-background-color);
+  color: var(--text-color);
+  border-radius: 16px;
+  font-weight: 600;
+}
+.cards-see-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  padding: 0 16px;
+}
+
+.cards-see-more-btn {
+  background-color: #e5e5df;
+  color: #111;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 24px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  min-width: 120px;
+  box-shadow: none;
+}
+
+.cards-see-more-btn:hover,
+.cards-see-more-btn:focus,
+.cards-see-more-btn:active {
+  background-color: #e0e0db;
+  color: #111;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Animation for newly revealed cards */
+.cards > ul > li {
+  transition: opacity 0.5s ease, transform 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 

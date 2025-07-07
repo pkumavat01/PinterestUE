@@ -144,7 +144,9 @@ pre {
   overflow-x: auto;
   white-space: pre;
 }
-
+main{
+  width: 100%;
+}
 main > div {
   margin: 40px 16px;
 }
@@ -258,6 +260,7 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
 .login-page main > div{
   display: flex;
   justify-content: center;
