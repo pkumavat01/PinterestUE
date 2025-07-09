@@ -62,17 +62,6 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
-function getAllCards() {
-  return Array.from(document.querySelectorAll('.cards > ul > li')).map((li) => {
-    const link = li.querySelector('a');
-    return {
-      title: li.querySelector('.cards-card-body')?.textContent?.trim() || 'Untitled',
-      image: li.querySelector('img')?.src,
-      url: link ? link.href : '',
-      element: li,
-    };
-  });
-}
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -163,15 +152,17 @@ export default async function decorate(block) {
     dropdown.style.display = 'none';
     searchContainer.appendChild(dropdown);
 
+    // eslint-disable-next-line max-len
     // Instead of using the hidden button, fetch the NTM (query-index.json) and fill dropdown options
 
+    // eslint-disable-next-line no-inner-declarations
     async function fillDropdownFromNTM() {
       try {
         const res = await fetch('/query-index.json');
         if (!res.ok) return;
         const data = await res.json();
         // Filter only items with path starting with /search/
-        const items = (data.data || []).filter(item => item.path && item.path.startsWith('/search/'));
+        const items = (data.data || []).filter((item) => item.path && item.path.startsWith('/search/'));
         dropdown.innerHTML = items.slice(0, 10).map((item) => `
           <div class="search-dropdown-card" data-url="${item.path}">
             <img src="${item.image || '/fallback.png'}" alt="${item.title || 'Card'}">
@@ -210,6 +201,7 @@ export default async function decorate(block) {
   // Hide button-container inside nav-sections
   if (navSections) {
     const buttonContainers = navSections.querySelectorAll('.button-container');
+    // eslint-disable-next-line no-return-assign
     buttonContainers.forEach((btn) => btn.style.display = 'none');
   }
 
@@ -229,7 +221,6 @@ export default async function decorate(block) {
   // login
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
-
     const loginBtn = navTools.querySelector('a[title="Login"]');
     const signupBtn = navTools.querySelector('a[title="Signup"]');
     const logoutBtn = navTools.querySelector('a[title="Logout"]');

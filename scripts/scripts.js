@@ -144,6 +144,7 @@ async function loadPage() {
   loadDelayed();
 }
 export function loginPage() {
+  // eslint-disable-next-line no-shadow
   const loginPage = document.body.classList.contains('login-page') ? document.body : document.querySelector('.login-page');
   if (!loginPage) return;
 
@@ -193,7 +194,7 @@ export function loginPage() {
       const password = wrapper.querySelector('#login-password')?.value.trim();
       if (username && password) {
         localStorage.setItem('user', JSON.stringify({ username }));
-        window.location.href = '/ideas'; 
+        window.location.href = '/ideas';
       } else {
         alert('Please enter both username and password.');
       }
