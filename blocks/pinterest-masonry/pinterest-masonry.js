@@ -2,7 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 function isLiked(cardId, likedItems) {
-  return likedItems.some(item => item.id === cardId);
+  return likedItems.some((item) => item.id === cardId);
 }
 
 function getCardDetails(imageUrl, bodyDiv) {
@@ -59,7 +59,7 @@ function renderFavorites(block, likedItems, userLikesKey) {
     heart.appendChild(heartImg);
 
     heart.addEventListener('click', () => {
-      const index = likedItems.findIndex(like => like.id === item.id);
+      const index = likedItems.findIndex((like) => like.id === item.id);
       if (index !== -1) {
         likedItems.splice(index, 1);
         localStorage.setItem(userLikesKey, JSON.stringify(likedItems));
@@ -114,7 +114,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
       } else {
         // Remove all <a> tags from the clone before appending to bodyDiv
         const divClone = div.cloneNode(true);
-        divClone.querySelectorAll('a').forEach(a => a.remove());
+        divClone.querySelectorAll('a').forEach((a) => a.remove());
         bodyDiv.appendChild(divClone);
       }
     });
@@ -122,7 +122,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
     // Prefer links from JSON if available
     let finalLinks = links;
     if (Array.isArray(linksFromJson) && linksFromJson.length > 0) {
-      finalLinks = linksFromJson.map(linkObj => {
+      finalLinks = linksFromJson.map((linkObj) => {
         const a = document.createElement('a');
         a.href = linkObj.url;
         a.textContent = linkObj.text;
@@ -136,7 +136,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
     if (finalLinks.length > 0) {
       carouselDiv = document.createElement('div');
       carouselDiv.className = 'button-carousel';
-      finalLinks.forEach(link => {
+      finalLinks.forEach((link) => {
         link.classList.add('carousel-link');
         carouselDiv.appendChild(link);
       });
@@ -144,6 +144,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
       // Add dummy links for demo
       carouselDiv = document.createElement('div');
       carouselDiv.className = 'button-carousel';
+      // eslint-disable-next-line no-plusplus
       for (let i = 1; i <= 5; i++) {
         const dummyLink = document.createElement('a');
         dummyLink.href = '#';
@@ -179,7 +180,7 @@ function renderMasonry(block, likedItems, userLikesKey) {
           likedItems.push(cardDetails);
         } else {
           iconImg.src = '/icons/heart.svg';
-          const index = likedItems.findIndex(item => item.id === cardImageUrl);
+          const index = likedItems.findIndex((item) => item.id === cardImageUrl);
           if (index !== -1) likedItems.splice(index, 1);
         }
 

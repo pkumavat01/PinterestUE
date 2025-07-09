@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
@@ -42,7 +43,7 @@ export default function decorate(block) {
   nextBtn.className = 'carousel-next';
   nextBtn.setAttribute('aria-label', 'Next');
 
-  let scrollAmount = 300;
+  const scrollAmount = 300;
 
   prevBtn.addEventListener('click', () => {
     ul.scrollBy({ left: -scrollAmount, behavior: 'smooth' });

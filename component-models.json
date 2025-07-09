@@ -28,18 +28,6 @@
         "label": "Template Name",
         "description": "The name of the template used for this page (for metadata or analytics)"
       }
-      ,
-      {
-        "component": "reference",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "imageAlt",
-        "label": "Image Alt Text"
-      }
     ]
   },
   {
@@ -157,6 +145,23 @@
             "value": "highlight"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "valueType": "string"
       }
     ]
   },
