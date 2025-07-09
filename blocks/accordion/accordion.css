@@ -1,0 +1,65 @@
+.accordion details {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.accordion details[open] {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.accordion summary {
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #f7f7f7;
+  outline: none;
+  border: none;
+  user-select: none;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.accordion summary > p {
+  margin: 0;
+  display: inline;
+  font: inherit;
+}
+
+.accordion summary > p:before{
+    content: '>';
+}
+
+.accordion details[open] summary > p:before {
+  content: 'v';
+}
+.accordion summary:focus {
+  background: #e0e0e0;
+}
+
+.accordion .accordion-content {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+@media (min-width: 600px) {
+  .accordion details {
+    margin-bottom: 1.5rem;
+  }
+  .accordion summary {
+    font-size: 1.1rem;
+  }
+  .accordion .accordion-content {
+    font-size: 1rem;
+  }
+}
