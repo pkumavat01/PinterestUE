@@ -43,10 +43,9 @@
           "multi": false
         },
         {
-          "component": "text-input",
+          "component": "text",
           "name": "title",
           "label": "Title",
-          "value":"",
           "valueType": "string"
         },
         {
