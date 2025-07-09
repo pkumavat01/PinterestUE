@@ -238,9 +238,10 @@
         "multi": false
       },
       {
-        "component": "text",
+        "component": "text-input",
         "name": "title",
         "label": "Title",
+        "value": "",
         "valueType": "string"
       },
       {
