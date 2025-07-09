@@ -22,11 +22,5 @@
       "small-cards",
       "accordion"
     ]
-  },
-  {
-    "id": "accordion",
-    "components": [
-      "accordion-item"
-    ]
   }
 ]
